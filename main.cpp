@@ -11,7 +11,7 @@
 #include <nlohmann/json.hpp>
 
 int main() {
-    std::cout << "Pokemon API Project...begin" << std::endl;
+    std::cout << "Pokemon API Project...begin!" << std::endl;
 
     return 0;
 }
