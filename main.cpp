@@ -5,35 +5,37 @@
  *      Author: Bryan
  */
 
-
 #include <iostream>
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
 
-size_t write_function(char *data, size_t size, size_t data_size, std::string *write_data);
-int init_curl(CURL *curl, std::string url, std::string *response, std::string *header);
-int create_connection(std::string url, std::string *response, std::string *header, long *response_code, double *elapsed_time);
-int get_curl_info(CURL *curl, long *response_code, double *elapsed_time);
+//TODO::create classes
+
+//TODO::create "Requests" class and move curl functionality to that class
+size_t writeFunction(char *data, size_t size, size_t data_size, std::string *writeData);
+int initCurl(CURL *curl, std::string url, std::string *response, std::string *header);
+int createConnection(std::string url, std::string *response, std::string *header, long *responseCode, double *elapsedTime);
+int getCurlInfo(CURL *curl, long *responseCode, double *elapsedTime);
 
 int main() {
     std::cout << "Pokemon API Project...begin!" << std::endl;
 
-    std::string pokemon_url = "https://pokeapi.co/api/v2/pokemon/";
+    std::string pokemonUrl = "https://pokeapi.co/api/v2/pokemon/";
     std::string response;
     std::string header;
-    long response_code;
-    double elapsed_time;
-    int curl_ret_status = 0;
+    long responseCode;
+    double elapsedTime;
+    int curlReturnStatus = 0;
 
-    std::string pokemon_name;
+    std::string pokemonName;
     std::cout << "Enter a Pokemon name: ";
-    getline(std::cin, pokemon_name);
+    getline(std::cin, pokemonName);
     std::cout << std::endl;
 
-    pokemon_url.append(pokemon_name);
+    pokemonUrl.append(pokemonName);
 
-    curl_ret_status = create_connection(pokemon_url, &response, &header, &response_code, &elapsed_time);
-    if (curl_ret_status != 0) {
+    curlReturnStatus = createConnection(pokemonUrl, &response, &header, &responseCode, &elapsedTime);
+    if (curlReturnStatus != 0) {
         return -1;
     }
 
@@ -44,12 +46,12 @@ int main() {
     return 0;
 }
 
-size_t write_function(char *rcvd_data, size_t size, size_t nmemb, std::string *user_data) {
-    user_data->append(rcvd_data, size * nmemb);
+size_t writeFunction(char *rcvd_data, size_t size, size_t nmemb, std::string *userData) {
+    userData->append(rcvd_data, size * nmemb);
     return size * nmemb;
 }
 
-int init_curl(CURL *curl, std::string url, std::string *response, std::string *header) {
+int initCurl(CURL *curl, std::string url, std::string *response, std::string *header) {
     CURLcode ret_code;
 
     //TODO: place curl_easy_init() here
@@ -60,7 +62,7 @@ int init_curl(CURL *curl, std::string url, std::string *response, std::string *h
         return -1;
     }
 
-    ret_code = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_function);
+    ret_code = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
     if (ret_code != CURLE_OK) {
         std::cerr << "Failed to set up data write function" << std::endl;
         return -1;
@@ -81,16 +83,16 @@ int init_curl(CURL *curl, std::string url, std::string *response, std::string *h
     return 0;
 }
 
-int get_curl_info(CURL *curl, long *response_code, double *elapsed_time) {
+int getCurlInfo(CURL *curl, long *responseCode, double *elapsedTime) {
     CURLcode ret_code;
 
-    ret_code = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, response_code);
+    ret_code = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, responseCode);
     if (ret_code != CURLE_OK) {
         std::cerr << "Failed to set up response code retriever" << std::endl;
         return -1;
     }
 
-    ret_code = curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME, elapsed_time);
+    ret_code = curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME, elapsedTime);
     if (ret_code != CURLE_OK) {
         std::cerr << "Failed to set up total elapsed time retriever" << std::endl;
         return -1;
@@ -99,12 +101,10 @@ int get_curl_info(CURL *curl, long *response_code, double *elapsed_time) {
     return 0;
 }
 
-int create_connection(std::string url, std::string *response, std::string *header, long *response_code, double *elapsed_time) {
+int createConnection(std::string url, std::string *response, std::string *header, long *responseCode, double *elapsedTime) {
     CURL *curl = NULL;
     CURLcode ret_code;
     int ret_status = 0;
-
-    std::cout << "1 " << std::endl;
 
     curl = curl_easy_init();
     if (curl == NULL) {
@@ -112,14 +112,10 @@ int create_connection(std::string url, std::string *response, std::string *heade
         return -1;
     }
 
-    std::cout << "2 " << std::endl;
-
-    ret_status = init_curl(curl, url, response, header);
+    ret_status = initCurl(curl, url, response, header);
     if (ret_status != 0) {
         return -1;
     }
-
-    std::cout << "3 " << std::endl;
 
     ret_code = curl_easy_perform(curl);
     if (ret_code != CURLE_OK) {
@@ -127,9 +123,7 @@ int create_connection(std::string url, std::string *response, std::string *heade
         return -1;
     }
 
-    std::cout << "4 " << std::endl;
-
-    get_curl_info(curl, response_code, elapsed_time);
+    getCurlInfo(curl, responseCode, elapsedTime);
 
     curl_easy_cleanup(curl);
 
