@@ -9,7 +9,13 @@
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
 
-//TODO::create classes
+using json = nlohmann::json;
+
+//TODO::create APIResource class
+//      - handles calling the URL
+
+//TODO::create user interface class ("PokeWrap")
+//      - user can just call a specific "endpoint" function
 
 //TODO::create "Requests" class and move curl functionality to that class
 size_t writeFunction(char *data, size_t size, size_t data_size, std::string *writeData);
@@ -40,6 +46,10 @@ int main() {
     }
 
     std::cout << "Response: " << std::endl << response << std::endl;
+
+    auto j = json::parse(response);
+
+    std::cout << "Parsed: " << std::endl << j["abilities"][0]["ability"]["name"] << std::endl;
 
     std::cout << "Done" << std::endl;
 
