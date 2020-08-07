@@ -7,6 +7,12 @@
 
 #include "PokeWrap.h"
 
+ // Constructor
+PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}
+
+// Destructor
+PokeWrap::~PokeWrap() {}
+
 std::string PokeWrap::formatUrl(std::string endpoint, std::string name) {
 	return (baseUrl + endpoint + "/" + name);
 }

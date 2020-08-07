@@ -12,7 +12,7 @@
 
 class Requests {
 private:
-    CURL *curl = nullptr;
+    CURL *curl;
     std::string response;
     std::string header;
     long responseCode;
@@ -23,6 +23,12 @@ private:
     int getCurlInfo();
 
 public:
+    // Constructor
+    Requests();
+
+    // Destructor
+    ~Requests();
+
     int createConnection(std::string url);
     std::string getResponse() const;
 };

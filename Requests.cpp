@@ -7,6 +7,16 @@
 
 #include "Requests.h"
 
+ // Constructor
+Requests::Requests() : curl(nullptr),
+                       response(""),
+                       header(""),
+                       responseCode(0),
+                       elapsedTime(0) {}
+
+// Destructor
+Requests::~Requests() {}
+
 int Requests::createConnection(std::string url) {
     CURLcode ret_code;
     int ret_status = 0;

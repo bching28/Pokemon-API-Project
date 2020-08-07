@@ -13,14 +13,17 @@
 
 class PokeWrap {
 private:
-	std::string baseUrl = "https://pokeapi.co/api/v2/";
+	std::string baseUrl;
 
 	std::string formatUrl(std::string endpoint, std::string name);
 	std::string retrieveHTTPResponse(std::string url);
 
 public:
-	//PokeWrap();
-	//~PokeWrap();
+	// Constructor
+	PokeWrap();
+
+	// Destructor
+	~PokeWrap();
 
 	// Berries
 	std::string berry         (std::string berryName);
