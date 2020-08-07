@@ -24,19 +24,26 @@ int main() {
     PokeWrap pw;
     
     std::string pokemonName;
+    std::string berryName;
     /*std::cout << "Enter a Pokemon name: ";
     getline(std::cin, pokemonName);
     std::cout << std::endl;*/
     pokemonName = "charmander";
+    berryName = "chesto";
 
-    std::string testResponse = pw.pokemon(pokemonName);
+    std::string testPokemonResponse = pw.pokemon(pokemonName);
+    std::string testBerryResponse = pw.berry(berryName);
 
-    auto j = json::parse(testResponse);
+    auto j = json::parse(testPokemonResponse);
 
     std::cout << "Parsed abilities: " << std::endl;
     for (auto& abilities : j["abilities"]) {
         std::cout << abilities["ability"]["name"] << std::endl;
     }
+
+    std::cout << std::endl;
+
+    std::cout << "Berry Response: " << std::endl << testBerryResponse << std::endl;
 
     std::cout << std::endl;
 
