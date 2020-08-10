@@ -11,13 +11,11 @@
 
 using json = nlohmann::json;
 
-//TODO::create APIResource class
-
-//TODO::create Pokemon class that inherits from APIResource
-//      -- will contain the fields for "pokemon" endpoint response
-//      -- The idea behind this is that every endpoint class will inherit from APIResource
-//      -- main.cpp should be able to declare an APIResource object but can accept any endpoint object
-//      -- Should create a class for each GROUP of endpoints (e.g. Berries, Contests, Encounters, etc.)
+//TODO::create Endpoint classes
+//      -- resource: https://pokeapi.co/docs/v2
+//      -- Each Category will have its own file
+//      -- Each file will have that Cateogry's Endpoint classes 
+//         (e.g. Contest.cpp/.h contains ContestType, ContestEffects, SuperContestEffects)
 
 int main() {
     std::cout << "Pokemon API Project...begin!" << std::endl;

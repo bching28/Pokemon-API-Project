@@ -27,6 +27,8 @@ public:
 	// Destructor
 	~PokeWrap();
 
+	//TODO::function types will change based on the class types created
+
 	// Berries
 	std::string berry         (std::string berryName);
 	std::string berryFirmness (std::string berryFirmnessName);

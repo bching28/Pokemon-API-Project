@@ -10,11 +10,12 @@ ContestType::ContestType(json contestType) :
     json parsedBF = json::parse(berryFlavorResponse);
     std::cout << "ParsedBF: " << parsedBF << std::endl;
 
+    //TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
     berryFlavor = new BerryFlavor(parsedBF);
 }
 
 ContestType::~ContestType() {
-
+    //TODO::delete dynamically allocated memory
 }
 
 //TODO::the HTTP requests will probably need to be moved out of PokeWrap

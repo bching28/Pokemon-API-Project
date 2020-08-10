@@ -15,6 +15,8 @@ PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}
 // Destructor
 PokeWrap::~PokeWrap() {}
 
+//TODO::the HTTP requests will probably need to be moved out of PokeWrap
+// into the Requests class? (duplicate TODO in Contests.cpp)
 std::string PokeWrap::formatUrl(std::string endpoint, std::string name) {
 	return (baseUrl + endpoint + "/" + name);
 }
@@ -58,6 +60,7 @@ ContestType PokeWrap::contestType(std::string contestTypeName) {
 
 	json parsedResp = json::parse(jsonResponse);
 
+	//TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
 	ContestType contestType(parsedResp);
 
 	return contestType;
