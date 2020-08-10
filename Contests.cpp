@@ -37,6 +37,6 @@ std::string ContestType::getName() {
     return name;
 }
 
-BerryFlavor* ContestType::getBerryFlavor() {
-    return berryFlavor;
+BerryFlavor ContestType::getBerryFlavor() {
+    return *berryFlavor;
 }

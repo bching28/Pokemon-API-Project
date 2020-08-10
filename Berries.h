@@ -54,6 +54,7 @@ public:
     ~BerryFlavor();
 
     int getId();
+    std::string getName();
 };
 
 #endif; // BERRIES_H

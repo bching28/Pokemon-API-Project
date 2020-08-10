@@ -36,7 +36,7 @@ public:
 
     int getId();
     std::string getName();
-    BerryFlavor* getBerryFlavor();
+    BerryFlavor getBerryFlavor();
 };
 
 class ContestEffect {

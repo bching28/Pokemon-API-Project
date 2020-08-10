@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Requests.h"
 #include "Contests.h"
+#include "Berries.h"
 
 class PokeWrap {
 private:

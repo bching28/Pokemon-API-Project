@@ -53,6 +53,11 @@ int main() {
 
     std::cout << std::endl;
 
+    std::cout << "Contest Type Response for BerryFlavor ID: " << std::endl << testContestResponse.getBerryFlavor().getId() << std::endl;
+    std::cout << "Contest Type Response for BerryFlavor Name: " << std::endl << testContestResponse.getBerryFlavor().getName() << std::endl;
+
+    std::cout << std::endl;
+
     std::cout << "Done" << std::endl;
 
     return 0;
