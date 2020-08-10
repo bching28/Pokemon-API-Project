@@ -3,16 +3,14 @@
 
 ContestType::ContestType(json contestType) :
     id(contestType["id"]),
-    name(to_string(contestType["name"])),
-    berryFlavor(NULL)
+    name(to_string(contestType["name"]))
 {
     //TODO::make funciton to convert id int to name string
     std::string berryFlavorResponse = retrieveHTTPResponse("https://pokeapi.co/api/v2/berry-flavor/1/"); // currently hard coded...rowap == 1
     json parsedBF = json::parse(berryFlavorResponse);
     std::cout << "ParsedBF: " << parsedBF << std::endl;
 
-    BerryFlavor bf(parsedBF);
-    berryFlavor = &bf;
+    berryFlavor = new BerryFlavor(parsedBF);
 }
 
 ContestType::~ContestType() {
@@ -37,4 +35,8 @@ int ContestType::getId() {
 
 std::string ContestType::getName() {
     return name;
+}
+
+BerryFlavor* ContestType::getBerryFlavor() {
+    return berryFlavor;
 }

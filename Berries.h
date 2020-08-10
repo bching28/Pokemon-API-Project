@@ -46,13 +46,14 @@ private:
     int id;
     std::string name;
     //FlavorBerryMap berries;
-    ContestType *contestType;
+    ContestType* contestType;
     //Name names;
 
 public:
     BerryFlavor(json berryFlavor);
     ~BerryFlavor();
 
+    int getId();
 };
 
 #endif; // BERRIES_H

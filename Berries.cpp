@@ -7,9 +7,14 @@ BerryFlavor::BerryFlavor(json berryFlavor) :
 {
     //name = berryFlavor["names"];
     //url = berryFlavor["url"];
-    //std::cout << "BF Name: " << typeid((std::string)berryFlavor["name"]).name() << std::endl;
+    std::cout << "BF ID: " << id << std::endl;
+    std::cout << "BF Name: " << name << std::endl;
 }
 
 BerryFlavor::~BerryFlavor() {
 
+}
+
+int BerryFlavor::getId() {
+    return id;
 }
