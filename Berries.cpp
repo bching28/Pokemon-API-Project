@@ -13,3 +13,11 @@ BerryFlavor::BerryFlavor(json berryFlavor) :
 BerryFlavor::~BerryFlavor() {
 
 }
+
+int BerryFlavor::getId() {
+    return id;
+}
+
+std::string BerryFlavor::getName() {
+    return name;
+}
