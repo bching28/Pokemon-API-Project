@@ -8,7 +8,6 @@
 #include <nlohmann/json.hpp>
 #include "PokeWrap.h"
 #include <typeinfo>
-//#include "NamedAPIResource.h"
 
 using json = nlohmann::json;
 
