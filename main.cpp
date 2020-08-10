@@ -7,17 +7,18 @@
 
 #include <nlohmann/json.hpp>
 #include "PokeWrap.h"
+#include <typeinfo>
+//#include "NamedAPIResource.h"
 
 using json = nlohmann::json;
 
 //TODO::create APIResource class
-//      - handles calling the URL
 
-//TODO::create user interface class ("PokeWrap")
-//      - user can just call a specific "endpoint" function
-//      PokeWrap pw --> pw.pokemon("charmander"); --> https://pokeapi.co/api/v2/pokemon/charmander
-
-//TODO::create classes
+//TODO::create Pokemon class that inherits from APIResource
+//      -- will contain the fields for "pokemon" endpoint response
+//      -- The idea behind this is that every endpoint class will inherit from APIResource
+//      -- main.cpp should be able to declare an APIResource object but can accept any endpoint object
+//      -- Should create a class for each GROUP of endpoints (e.g. Berries, Contests, Encounters, etc.)
 
 int main() {
     std::cout << "Pokemon API Project...begin!" << std::endl;
@@ -33,8 +34,9 @@ int main() {
 
     std::string testPokemonResponse = pw.pokemon(pokemonName);
     std::string testBerryResponse = pw.berry(berryName);
+    ContestType testContestResponse = pw.contestType("cool");
 
-    auto j = json::parse(testPokemonResponse);
+    json j = json::parse(testPokemonResponse);
 
     std::cout << "Parsed abilities: " << std::endl;
     for (auto& abilities : j["abilities"]) {
@@ -44,6 +46,10 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "Berry Response: " << std::endl << testBerryResponse << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "Contest Type Response: " << std::endl << testContestResponse.getName() << std::endl;
 
     std::cout << std::endl;
 

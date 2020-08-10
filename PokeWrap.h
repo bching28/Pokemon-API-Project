@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "Requests.h"
+#include "Contests.h"
 
 class PokeWrap {
 private:
@@ -31,7 +32,7 @@ public:
 	std::string berryFlavor   (std::string berryFlavorName);
 
 	// Contests
-	std::string contestType        (std::string contestTypeName);
+	ContestType contestType        (std::string contestTypeName);
 	std::string contestEffect      (std::string contestEffectName);
 	std::string superContestEffect (std::string superContestEffectName);
 

@@ -5,7 +5,12 @@
  *      Author: Bryan & Danny
  */
 
+#include <nlohmann/json.hpp>
 #include "PokeWrap.h"
+#include "Contests.h"
+#include <typeinfo>
+
+//using json = nlohmann::json;
 
  // Constructor
 PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}
@@ -49,10 +54,17 @@ std::string PokeWrap::berryFlavor(std::string berryFlavorName) {
 
 // Contests
 
-std::string PokeWrap::contestType(std::string contestTypeName) {
+//std::string PokeWrap::contestType(std::string contestTypeName) {
+ContestType PokeWrap::contestType(std::string contestTypeName) {
 	std::string formattedUrl = formatUrl("contest-type", contestTypeName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	std::string jsonResponse = retrieveHTTPResponse(formattedUrl);
+
+	json parsedResp = json::parse(jsonResponse);
+
+	ContestType contestType(parsedResp);
+	return contestType;
+	//return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::contestEffect(std::string contestEffectName) {
