@@ -34,8 +34,8 @@ public:
     ContestType(json parsedResp);
     ~ContestType();
 
-    int getId() { return id; }
-    std::string getName() { return name; }
+    int getId();
+    std::string getName();
 };
 
 class ContestEffect {
