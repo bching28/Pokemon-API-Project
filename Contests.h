@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 // forward declarations
 class BerryFlavor;
-class PokeWrap;
+//class PokeWrap;
 
 class ContestName {
 private:
@@ -24,7 +24,7 @@ class ContestType : public NamedAPIResource{
 private:
     int id;
     std::string name;
-    BerryFlavor *berryFlavor;
+    BerryFlavor* berryFlavor;
     //ContestName names
 
     std::string retrieveHTTPResponse(std::string url);

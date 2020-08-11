@@ -6,6 +6,7 @@ ContestType::ContestType(json contestType) :
     name(to_string(contestType["name"]))
 {
     //TODO::make funciton to convert id int to name string
+    //TODO::make the function call to retrieveHTTPResponse() dynamic
     std::string berryFlavorResponse = retrieveHTTPResponse("https://pokeapi.co/api/v2/berry-flavor/1/"); // currently hard coded...rowap == 1
     json parsedBF = json::parse(berryFlavorResponse);
     std::cout << "ParsedBF: " << parsedBF << std::endl;
@@ -15,7 +16,7 @@ ContestType::ContestType(json contestType) :
 }
 
 ContestType::~ContestType() {
-    //TODO::delete dynamically allocated memory
+    //TODO::deallocated memory of dynamic variables
 }
 
 //TODO::the HTTP requests will probably need to be moved out of PokeWrap

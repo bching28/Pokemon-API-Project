@@ -9,6 +9,7 @@
 
 using json = nlohmann::json;
 
+// forward declarations
 class BerryFirmness;
 class ContestType;
 

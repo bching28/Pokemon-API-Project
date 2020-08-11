@@ -17,6 +17,8 @@ using json = nlohmann::json;
 //      -- Each file will have that Cateogry's Endpoint classes 
 //         (e.g. Contest.cpp/.h contains ContestType, ContestEffects, SuperContestEffects)
 
+//TODO::move "*" for pointers to be attached to object type and not the variables
+
 int main() {
     std::cout << "Pokemon API Project...begin!" << std::endl;
     PokeWrap pw;
