@@ -58,4 +58,4 @@ public:
     std::string getName();
 };
 
-#endif; // BERRIES_H
+#endif // BERRIES_H

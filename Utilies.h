@@ -43,4 +43,4 @@ private:
     Language *language;
 };
 
-#endif; // UTILITIES_H
+#endif // UTILITIES_H

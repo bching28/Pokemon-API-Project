@@ -1,15 +1,20 @@
 #include "Contests.h"
 #include "Requests.h"
 
-ContestType::ContestType(json contestType) :
-    id(contestType["id"]),
-    name(to_string(contestType["name"]))
+ContestType::ContestType(std::string contestTypeName)
 {
+    Requests req;
+
+    json parsedCT = req.retrieveJson("contest-type", contestTypeName);
+    std::cout << "ParsedCT: " << parsedCT << std::endl << std::endl;
+
+    id = parsedCT["id"];
+    name = to_string(parsedCT["name"]);
+
     //TODO::make funciton to convert id int to name string
-    //TODO::make the function call to retrieveHTTPResponse() dynamic
-    std::string berryFlavorResponse = retrieveHTTPResponse("https://pokeapi.co/api/v2/berry-flavor/1/"); // currently hard coded...rowap == 1
-    json parsedBF = json::parse(berryFlavorResponse);
-    std::cout << "ParsedBF: " << parsedBF << std::endl;
+    
+    json parsedBF = req.retrieveJson("berry-flavor", parsedCT["berry_flavor"]["name"]);
+    std::cout << "ParsedBF: " << parsedBF << std::endl << std::endl;
 
     //TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
     berryFlavor = new BerryFlavor(parsedBF);
@@ -17,18 +22,6 @@ ContestType::ContestType(json contestType) :
 
 ContestType::~ContestType() {
     //TODO::deallocated memory of dynamic variables
-}
-
-//TODO::the HTTP requests will probably need to be moved out of PokeWrap
-// into the Requests class?
-std::string ContestType::retrieveHTTPResponse(std::string url) {
-    Requests req;
-    int curlReturnStatus = 0;
-    curlReturnStatus = req.createConnection(url);
-    if (curlReturnStatus != 0) {
-        return "Connection Failed.";
-    }
-    return req.getResponse();
 }
 
 int ContestType::getId() {

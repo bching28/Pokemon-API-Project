@@ -10,7 +10,6 @@ using json = nlohmann::json;
 
 // forward declarations
 class BerryFlavor;
-//class PokeWrap;
 
 class ContestName {
 private:
@@ -27,10 +26,8 @@ private:
     BerryFlavor* berryFlavor;
     //ContestName names
 
-    std::string retrieveHTTPResponse(std::string url);
-
 public:
-    ContestType(json parsedResp);
+    ContestType(std::string contestTypeName);
     ~ContestType();
 
     int getId();
@@ -59,4 +56,4 @@ private:
 public:
 };
 
-#endif; // CONTESTS_H
+#endif // CONTESTS_H

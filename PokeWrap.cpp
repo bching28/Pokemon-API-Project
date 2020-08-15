@@ -54,14 +54,8 @@ std::string PokeWrap::berryFlavor(std::string berryFlavorName) {
 // Contests
 
 ContestType PokeWrap::contestType(std::string contestTypeName) {
-	std::string formattedUrl = formatUrl("contest-type", contestTypeName);
-
-	std::string jsonResponse = retrieveHTTPResponse(formattedUrl);
-
-	json parsedResp = json::parse(jsonResponse);
-
 	//TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
-	ContestType contestType(parsedResp);
+	ContestType contestType(contestTypeName);
 
 	return contestType;
 }

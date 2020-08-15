@@ -17,6 +17,32 @@ Requests::Requests() : curl(nullptr),
 // Destructor
 Requests::~Requests() {}
 
+std::string Requests::formatUrl(std::string endpoint, std::string name) {
+    return (Requests::baseUrl + endpoint + "/" + name);
+}
+
+//TODO::the HTTP requests will probably need to be moved out of PokeWrap
+// into the Requests class?
+std::string Requests::retrieveHTTPResponse(std::string url) {
+    Requests req;
+    int curlReturnStatus = 0;
+    curlReturnStatus = req.createConnection(url);
+    if (curlReturnStatus != 0) {
+        return "Connection Failed.";
+    }
+    return req.getResponse();
+}
+
+json Requests::retrieveJson(std::string endpointType, std::string endpointValue) {
+    std::string formattedUrl = formatUrl(endpointType, endpointValue);
+
+    std::string jsonResponse = retrieveHTTPResponse(formattedUrl);
+
+    json parsedResp = json::parse(jsonResponse);
+
+    return parsedResp;
+}
+
 int Requests::createConnection(std::string url) {
     CURLcode ret_code;
     int ret_status = 0;

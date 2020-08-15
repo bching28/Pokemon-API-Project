@@ -9,4 +9,4 @@ protected:
     std::string url;
 };
 
-#endif; // NAMED_API_RESOURCE_H
+#endif // NAMED_API_RESOURCE_H

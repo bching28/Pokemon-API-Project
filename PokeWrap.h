@@ -101,4 +101,4 @@ public:
 
 };
 
-#endif; // POKEWRAP_H
+#endif // POKEWRAP_H
