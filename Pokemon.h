@@ -2,6 +2,7 @@
 #define POKEMON_H
 
 #include "NamedAPIResource.h"
+#include "Utilies.h"
 
 class Ability : public NamedAPIResource {
 private:
@@ -22,7 +23,7 @@ public:
 
 class AbilityEffectChange {
 private:
-    Effect effectEntries;
+    //Effect effectEntries;
     /*VersionGroup versionGroup;*/
 
 public:
