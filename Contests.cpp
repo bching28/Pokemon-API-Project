@@ -1,8 +1,7 @@
 #include "Contests.h"
 #include "Requests.h"
 
-ContestType::ContestType(std::string contestTypeName)
-{
+ContestType::ContestType(std::string contestTypeName) {
     Requests req;
 
     json parsedCT = req.retrieveJson("contest-type", contestTypeName);

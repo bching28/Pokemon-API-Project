@@ -2,18 +2,28 @@
 #define BERRIES_H
 
 #include <iostream>
-#include "NamedAPIResource.h"
-#include "Utilies.h"
 #include "Contests.h"
+#include "Items.h"
+#include "NamedAPIResource.h"
+//#include "Pokemon.h"
+#include "Utility.h"
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
 // forward declarations
+class Berry;
 class BerryFirmness;
-class ContestType;
+class BerryFlavor;
+class BerryFlavorMap;
+class FlavorBerryMap;
 
-class Berry {
+class ContestType;     // Contests.h
+class Item;            // Items.h
+class Name;            // Utility.h
+//class Type;            // Pokemon.h
+
+class Berry : public NamedAPIResource {
 private:
     int id;
     std::string name;
@@ -23,32 +33,45 @@ private:
     int size;
     int smoothness;
     int soilDryness;
-    BerryFirmness *firmness;
-    //BerryFlavorsList flavors;
-    //Item item;
-    //Type naturalGiftTyoe;
+    BerryFirmness* firmness;
+    BerryFlavorMap* flavors;
+    Item* item;
+    //Type* naturalGiftType; // Pokemon.h
 
 public:
-
+    Berry();
+    ~Berry();
 };
 
-class BerryFirmness {
+class BerryFlavorMap {
+private:
+    int potency;
+    BerryFlavor* flavor;
+
+public:
+    BerryFlavorMap();
+    ~BerryFlavorMap();
+};
+
+class BerryFirmness : public NamedAPIResource {
 private:
     int id;
     std::string name;
-    Berry *berries;
-    Name names;
+    Berry* berries;
+    Name* names;
 
 public:
+    BerryFirmness();
+    ~BerryFirmness();
 };
 
 class BerryFlavor : public NamedAPIResource {
 private:
     int id;
     std::string name;
-    //FlavorBerryMap berries;
+    FlavorBerryMap* berries;
     ContestType* contestType;
-    //Name names;
+    Name* names;
 
 public:
     BerryFlavor(json berryFlavor);
@@ -56,6 +79,16 @@ public:
 
     int getId();
     std::string getName();
+};
+
+class FlavorBerryMap {
+private:
+    int potency;
+    Berry* berry;
+
+public:
+    FlavorBerryMap();
+    ~FlavorBerryMap();
 };
 
 #endif // BERRIES_H

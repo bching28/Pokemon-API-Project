@@ -24,7 +24,7 @@ private:
     double elapsedTime;
 
     int initCurl(std::string url);
-    static size_t writeFunction(char *rcvd_data, size_t size, size_t nmemb, std::string *userData);
+    static size_t writeFunction(char* rcvd_data, size_t size, size_t nmemb, std::string* userData);
     int getCurlInfo();
 
 public:
