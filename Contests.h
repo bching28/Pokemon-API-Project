@@ -27,15 +27,16 @@ private:
     int id;
     std::string name;
     BerryFlavor* berryFlavor;
-    ContestName* names;
+    std::vector<ContestName*> names; // vector...probably need unique_ptr's
 
 public:
-    ContestType(std::string contestTypeName);
+    ContestType(std::string contestTypeName, bool isFirstCall);
     ~ContestType();
 
     int getId();
     std::string getName();
     BerryFlavor getBerryFlavor();
+    ContestName getContestName(int index);
 };
 
 class ContestName {
@@ -45,8 +46,12 @@ private:
     Language* language;
 
 public:
-    ContestName();
+    ContestName(json contestNameName, bool isFirstCall);
     ~ContestName();
+
+    std::string getName();
+    std::string getColor();
+    Language getLanguage();
 };
 
 class ContestEffect {

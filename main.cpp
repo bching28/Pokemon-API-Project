@@ -57,6 +57,13 @@ int main() {
 
     std::cout << std::endl;
 
+    for (int i = 0; i < 2; i++) {
+        std::cout << "Contest Type - Contest Name Name: " << testContestResponse.getContestName(i).getName() << std::endl;
+        std::cout << "Contest Type - Contest Name Color: " << testContestResponse.getContestName(i).getColor() << std::endl;
+        std::cout << "Contest Type - Contest Name Language - ID: " << testContestResponse.getContestName(i).getLanguage().getId() << std::endl;
+        std::cout << "Contest Type - Contest Name Language - Name: " << testContestResponse.getContestName(i).getLanguage().getName() << std::endl;
+    }
+
     std::cout << "Done" << std::endl;
 
     return 0;

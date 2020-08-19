@@ -1,14 +1,19 @@
 #include "Berries.h"
+#include "Requests.h"
 
-BerryFlavor::BerryFlavor(json berryFlavor) :
-    id(berryFlavor["id"]),
-    name(to_string(berryFlavor["name"])),
-    contestType(NULL)
+BerryFlavor::BerryFlavor(std::string berryFlavorName, bool isFirstCall)
 {
-    //name = berryFlavor["names"];
-    //url = berryFlavor["url"];
-    std::cout << "BF ID: " << id << std::endl;
-    std::cout << "BF Name: " << name << std::endl;
+    if (isFirstCall) {
+        Requests req;
+        json parsedBF = req.retrieveJson("berry-flavor", berryFlavorName);
+
+        id = parsedBF["id"];
+        name = to_string(parsedBF["name"]);
+    
+        //contestType = new ContestType(parsedBF["contest_type"], isFirstCall, true);
+
+        isFirstCall = false;
+    }
 }
 
 BerryFlavor::~BerryFlavor() {

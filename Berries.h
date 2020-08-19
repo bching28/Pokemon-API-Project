@@ -74,7 +74,7 @@ private:
     Name* names;
 
 public:
-    BerryFlavor(json berryFlavor);
+    BerryFlavor(std::string berryFlavor, bool isFirstCall);
     ~BerryFlavor();
 
     int getId();
