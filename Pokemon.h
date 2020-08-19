@@ -1,8 +1,8 @@
 #ifndef POKEMON_H
 #define POKEMON_H
 
-#include "NamedAPIResource.h"
-#include "Utilies.h"
+#include "Resource.h"
+#include "Utility.h"
 
 class Ability : public NamedAPIResource {
 private:
@@ -369,7 +369,7 @@ private:
 
 public:
     PokemonHabitat();
-    ~PokemonHabitatI();
+    ~PokemonHabitat();
 };
 
 class PokemonShape : public NamedAPIResource {
@@ -433,8 +433,8 @@ private:
     std::string genus;
     //Language language;
 public:
-    Genus;
-    ~Genus;
+    Genus();
+    ~Genus();
 };
 
 class PokemonSpeciesDexEntry {

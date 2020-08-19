@@ -1,4 +1,4 @@
-#include "NamedAPIResource.h"
+#include "Resource.h"
 
 APIResource::APIResource() :
     url("") 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Items.h"
 #include "Locations.h"
-#include "NamedAPIResource.h"
+#include "Resource.h"
 //#include "Pokemon.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>

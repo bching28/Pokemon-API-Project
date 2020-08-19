@@ -1,7 +1,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include "NamedAPIResource.h"
+#include "Resource.h"
 
 // forward declaration
 class Language;

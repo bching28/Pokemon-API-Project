@@ -1,8 +1,8 @@
 #ifndef MOVES_H
 #define MOVES_H
 
-#include "NamedAPIResource.h"
-#include "Utilies.h"
+#include "Resource.h"
+#include "Utility.h"
 
 class Move : public NamedAPIResource {
 private:

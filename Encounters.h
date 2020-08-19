@@ -2,7 +2,7 @@
 #define ENCOUNTERS_H
 
 #include <iostream>
-#include "NamedAPIResource.h"
+#include "Resource.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
 

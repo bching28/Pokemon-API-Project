@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Berries.h"
 //#include "Moves.h"
-#include "NamedAPIResource.h"
+#include "Resource.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
 

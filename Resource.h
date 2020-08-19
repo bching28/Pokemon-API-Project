@@ -1,5 +1,5 @@
-#ifndef NAMED_API_RESOURCE_H
-#define NAMED_API_RESOURCE_H
+#ifndef RESOURCE_H
+#define RESOURCE_H
 
 #include <iostream>
 
@@ -22,4 +22,4 @@ public:
     ~NamedAPIResource();
 };
 
-#endif // NAMED_API_RESOURCE_H
+#endif // RESOURCE_H
