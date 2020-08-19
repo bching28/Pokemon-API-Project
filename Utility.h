@@ -1,5 +1,5 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTILITY_H
+#define UTILITY_H
 
 #include "Resource.h"
 
@@ -126,4 +126,4 @@ public:
     ~VersionGroupFlavorText();
 };
 
-#endif // UTILITIES_H
+#endif // UTILITY_H
