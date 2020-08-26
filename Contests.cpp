@@ -1,25 +1,43 @@
 #include "Contests.h"
 #include "Requests.h"
+//#include "Dictionary.h"
 
-ContestType::ContestType(std::string contestTypeName, bool isFirstCall) {
-    if (isFirstCall) {
-        Requests req;
+//ContestType::ContestType(std::string contestTypeName, bool isFirstCall) {
+//    if (isFirstCall) {
+//        Requests req;
+//
+//        //TODO::make a file that has variables for all the endpoints
+//        json parsedCT = req.retrieveJson("contest-type", contestTypeName);
+//
+//        id = parsedCT["id"];
+//        name = to_string(parsedCT["name"]);
+//
+//        //TODO::make funciton to convert id int to name string
+//
+//        //TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
+//        //berryFlavor = new BerryFlavor(parsedCT["berry_flavor"]["name"], isFirstCall);
+//        berryFlavor = NULL;
+//
+//        for (auto& contestName : parsedCT["names"]) {
+//            names.push_back(new ContestName(contestName, isFirstCall));
+//        }
+//    }
+//}
 
-        //TODO::make a file that has variables for all the endpoints
-        json parsedCT = req.retrieveJson("contest-type", contestTypeName);
+ContestType::ContestType(std::string name, std::string url) {
+    NamedAPIResource::name = name;
+    NamedAPIResource::url = url;
 
-        id = parsedCT["id"];
-        name = to_string(parsedCT["name"]);
+    Requests req;
+    parsedCT = req.retrieveJson("contest-type", name); //cool
 
-        //TODO::make funciton to convert id int to name string
-
-        //TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
-        berryFlavor = new BerryFlavor(parsedCT["berry_flavor"]["name"], isFirstCall);
-
-        for (auto& contestName : parsedCT["names"]) {
-            names.push_back(new ContestName(contestName, isFirstCall));
-        }
-    }
+    id = parsedCT["id"];
+    this->name = to_string(parsedCT["name"]);
+    std::string bfName = parsedCT["berry_flavor"]["name"];
+    //berryFlavor = new BerryFlavor(parsedCT["berry_flavor"]["name"], parsedCT["berry_flavor"]["url"]);
+    berryFlavor = NULL;
+    //names = NULL;
+    dict = dict->getInstance();
 }
 
 ContestType::~ContestType() {
@@ -35,7 +53,18 @@ std::string ContestType::getName() {
 }
 
 BerryFlavor ContestType::getBerryFlavor() {
-    return *berryFlavor;
+    //search dict by passing in name
+    std::string bfName = parsedCT["berry_flavor"]["name"];
+    std::string bfUrl = parsedCT["berry_flavor"]["url"];
+
+    //if not found in dict
+    if (dict->hasFoundKey("berry-flavor", bfName) == false) {
+        // add to dictionary
+        //BerryFlavor* bf = new BerryFlavor(bfName, bfUrl);
+        dict->setBerryFlavorDictEntry(bfName, bfUrl);
+    }
+
+    return dict->getBerryFlavorDictEntry(bfName);
 }
 
 ContestName ContestType::getContestName(int index) {

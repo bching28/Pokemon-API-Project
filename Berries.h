@@ -5,6 +5,7 @@
 #include "Contests.h"
 #include "Items.h"
 #include "Resource.h"
+#include "Dictionary.h"
 //#include "Pokemon.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
@@ -12,6 +13,7 @@
 using json = nlohmann::json;
 
 // forward declarations
+class Dictionary;
 class Berry;
 class BerryFirmness;
 class BerryFlavor;
@@ -22,6 +24,8 @@ class ContestType;     // Contests.h
 class Item;            // Items.h
 class Name;            // Utility.h
 //class Type;            // Pokemon.h
+
+//dict = new Dictionary();
 
 class Berry : public NamedAPIResource {
 private:
@@ -73,12 +77,18 @@ private:
     ContestType* contestType;
     Name* names;
 
+    json parsedBF;
+    Dictionary* dict;
+
 public:
     BerryFlavor(std::string berryFlavor, bool isFirstCall);
+    BerryFlavor(std::string name, std::string url);
+    BerryFlavor();
     ~BerryFlavor();
 
     int getId();
     std::string getName();
+    ContestType getContestType();
 };
 
 class FlavorBerryMap {

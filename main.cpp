@@ -57,12 +57,15 @@ int main() {
 
     std::cout << std::endl;
 
-    for (int i = 0; i < 2; i++) {
+    std::cout << "BF->CT: " << std::endl << testContestResponse.getBerryFlavor().getContestType().getName() << std::endl;
+    std::cout << "BF->CT->BF: " << std::endl << testContestResponse.getBerryFlavor().getContestType().getBerryFlavor().getName() << std::endl;
+
+    /*for (int i = 0; i < 2; i++) {
         std::cout << "Contest Type - Contest Name Name: " << testContestResponse.getContestName(i).getName() << std::endl;
         std::cout << "Contest Type - Contest Name Color: " << testContestResponse.getContestName(i).getColor() << std::endl;
         std::cout << "Contest Type - Contest Name Language - ID: " << testContestResponse.getContestName(i).getLanguage().getId() << std::endl;
         std::cout << "Contest Type - Contest Name Language - Name: " << testContestResponse.getContestName(i).getLanguage().getName() << std::endl;
-    }
+    }*/
 
     std::cout << "Done" << std::endl;
 

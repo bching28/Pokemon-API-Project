@@ -56,7 +56,8 @@ std::string PokeWrap::berryFlavor(std::string berryFlavorName) {
 ContestType PokeWrap::contestType(std::string contestTypeName) {
 	bool isFirstCall = true;
 	//TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
-	ContestType contestType(contestTypeName, isFirstCall);
+	//ContestType contestType(contestTypeName, true);
+	ContestType contestType(contestTypeName, "https://pokeapi.co/api/v2/contest-type/1");
 
 	return contestType;
 }

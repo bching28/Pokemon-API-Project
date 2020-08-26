@@ -5,12 +5,14 @@
 #include "Berries.h"
 //#include "Moves.h"
 #include "Resource.h"
+#include "Dictionary.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
 // forward declarations
+class Dictionary;
 class ContestEffect;
 class ContestName;
 class ContestType;
@@ -29,8 +31,12 @@ private:
     BerryFlavor* berryFlavor;
     std::vector<ContestName*> names; // vector...probably need unique_ptr's
 
+    json parsedCT;
+    Dictionary* dict;
+
 public:
-    ContestType(std::string contestTypeName, bool isFirstCall);
+    //ContestType(std::string contestTypeName, bool isFirstCall);
+    ContestType(std::string name, std::string url);
     ~ContestType();
 
     int getId();
@@ -46,7 +52,7 @@ private:
     Language* language;
 
 public:
-    ContestName(json contestNameName, bool isFirstCall);
+    ContestName(json contestNameName, bool isFirstCall = false);
     ~ContestName();
 
     std::string getName();
