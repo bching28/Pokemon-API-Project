@@ -81,7 +81,7 @@ private:
     Dictionary* dict;
 
 public:
-    BerryFlavor(std::string berryFlavor, bool isFirstCall);
+    //BerryFlavor(std::string berryFlavor, bool isFirstCall);
     BerryFlavor(std::string name, std::string url);
     BerryFlavor();
     ~BerryFlavor();

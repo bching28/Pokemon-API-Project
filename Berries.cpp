@@ -1,6 +1,5 @@
 #include "Berries.h"
 #include "Requests.h"
-//#include "Dictionary.h"
 
 //BerryFlavor::BerryFlavor(std::string berryFlavorName, bool isFirstCall) {
 //    if (isFirstCall) {
@@ -62,10 +61,8 @@ ContestType BerryFlavor::getContestType() {
     //if not found in dict
     if (dict->hasFoundKey("contest-type", ctName) == false) {
         // add to dictionary
-        ContestType* ct = new ContestType(ctName, ctUrl);
-        dict->setContestTypeDictEntry(ct, ctName);
-        //dict->contestTypeDict[ctName] = new ContestType(ctName, ctUrl);
+        dict->setContestTypeDictEntry(ctName, ctUrl);
     }
-    // return ContestType object
+    dict->printContestTypeMap();
     return dict->getContestTypeDictEntry(ctName);
 }

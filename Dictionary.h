@@ -23,10 +23,13 @@ public:
     static Dictionary* getInstance();
 
     bool hasFoundKey(std::string endPoint, std::string key);
-    void setContestTypeDictEntry(ContestType* ct, std::string key);
+    void setContestTypeDictEntry(std::string key, std::string ctUrl);
     ContestType getContestTypeDictEntry(std::string key);
     void setBerryFlavorDictEntry(std::string key, std::string bfUrl);
     BerryFlavor getBerryFlavorDictEntry(std::string key);
+
+    void printBerryFlavorMap();
+    void printContestTypeMap();
 };
 
 #endif // DICTIONARY_H

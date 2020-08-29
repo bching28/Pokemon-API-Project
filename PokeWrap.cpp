@@ -45,19 +45,20 @@ std::string PokeWrap::berryFirmness(std::string berryFirmnessName) {
 	return retrieveHTTPResponse(formattedUrl);
 }
 
-std::string PokeWrap::berryFlavor(std::string berryFlavorName) {
-	std::string formattedUrl = formatUrl("berry-flavor", berryFlavorName);
+BerryFlavor PokeWrap::berryFlavor(std::string berryFlavorName) {
+	//std::string formattedUrl = formatUrl("berry-flavor", berryFlavorName);
+	BerryFlavor berryFlavor(berryFlavorName, "https://pokeapi.co/api/v2/berry-flavor/1"); // 1 == spicy
 
-	return retrieveHTTPResponse(formattedUrl);
+	return berryFlavor;
 }
 
 // Contests
 
 ContestType PokeWrap::contestType(std::string contestTypeName) {
-	bool isFirstCall = true;
+	//bool isFirstCall = true;
 	//TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
 	//ContestType contestType(contestTypeName, true);
-	ContestType contestType(contestTypeName, "https://pokeapi.co/api/v2/contest-type/1");
+	ContestType contestType(contestTypeName, "https://pokeapi.co/api/v2/contest-type/1"); // 1 == cool
 
 	return contestType;
 }

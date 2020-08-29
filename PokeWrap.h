@@ -32,7 +32,7 @@ public:
 	// Berries
 	std::string berry         (std::string berryName);
 	std::string berryFirmness (std::string berryFirmnessName);
-	std::string berryFlavor   (std::string berryFlavorName);
+	BerryFlavor berryFlavor   (std::string berryFlavorName);
 
 	// Contests
 	ContestType contestType        (std::string contestTypeName);

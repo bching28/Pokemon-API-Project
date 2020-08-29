@@ -34,6 +34,7 @@ int main() {
     std::string testPokemonResponse = pw.pokemon(pokemonName);
     std::string testBerryResponse = pw.berry(berryName);
     ContestType testContestResponse = pw.contestType("cool");
+    BerryFlavor testBerryFlavorResponse = pw.berryFlavor("spicy");
 
     json j = json::parse(testPokemonResponse);
 
@@ -46,7 +47,7 @@ int main() {
 
     std::cout << "Berry Response: " << std::endl << testBerryResponse << std::endl;
 
-    std::cout << std::endl;
+    std::cout << std::endl << "------------------------------------------------------------" << std::endl;
 
     std::cout << "Contest Type Response: " << std::endl << testContestResponse.getName() << std::endl;
 
@@ -59,6 +60,19 @@ int main() {
 
     std::cout << "BF->CT: " << std::endl << testContestResponse.getBerryFlavor().getContestType().getName() << std::endl;
     std::cout << "BF->CT->BF: " << std::endl << testContestResponse.getBerryFlavor().getContestType().getBerryFlavor().getName() << std::endl;
+
+    std::cout << std::endl << "------------------------------------------------------------" << std::endl;
+
+    std::cout << "Berry Flavor Response: " << std::endl << testBerryFlavorResponse.getName() << std::endl;
+
+    std::cout << "Berry Flavor Response for ContestType ID: " << std::endl << testBerryFlavorResponse.getContestType().getId() << std::endl;
+    std::cout << "Berry Flavor Response for ContetType Name: " << std::endl << testBerryFlavorResponse.getContestType().getName() << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "CT->BF: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getName() << std::endl;
+    std::cout << "CT->BF->CT: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getContestType().getName() << std::endl;
+
 
     /*for (int i = 0; i < 2; i++) {
         std::cout << "Contest Type - Contest Name Name: " << testContestResponse.getContestName(i).getName() << std::endl;
