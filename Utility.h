@@ -2,11 +2,13 @@
 #define UTILITY_H
 
 #include "Resource.h"
+#include "Dictionary.h"
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
 // forward declaration
+class Dictionary;
 class Language;
 class Name;
 
@@ -19,8 +21,11 @@ private:
     std::string iso3166;
     std::vector<Name*> names;
 
+    json parsedL;
+    Dictionary* dict;
+
 public:
-    Language(std::string languageName, bool isFirstTime);
+    Language(std::string name, std::string url);
     ~Language();
 
     int getId();
@@ -28,6 +33,7 @@ public:
     bool getOfficial();
     std::string getIso639();
     std::string getIso3166();
+    Name getUtilityName(int index);
 };
 
 class Description {
@@ -91,9 +97,15 @@ private:
     std::string name;
     Language* language;
 
+    json parsedN;
+    Dictionary* dict;
+
 public:
-    Name(json nameName, bool isFirstTime);
+    Name(json nameJson);
     ~Name();
+
+    std::string getName();
+    Language getLanguage();
 };
 
 class VerboseEffect {

@@ -32,10 +32,12 @@ ContestType::ContestType(std::string name, std::string url) {
 
     id = parsedCT["id"];
     this->name = to_string(parsedCT["name"]);
-    std::string bfName = parsedCT["berry_flavor"]["name"];
-    //berryFlavor = new BerryFlavor(parsedCT["berry_flavor"]["name"], parsedCT["berry_flavor"]["url"]);
     berryFlavor = NULL;
-    //names = NULL;
+
+    for (auto& contestName : parsedCT["names"]) {
+        names.push_back(new ContestName(contestName));
+    }
+
     dict = dict->getInstance();
 }
 
@@ -71,10 +73,12 @@ ContestName ContestType::getContestName(int index) {
 
 
 // ContestName
-ContestName::ContestName(json contestNameName, bool isFirstCall) {
-    name = contestNameName["name"];
-    color = contestNameName["color"];
-    language = new Language(contestNameName["language"]["name"], isFirstCall);
+ContestName::ContestName(json contestNameJson) {
+    parsedCN = contestNameJson;
+    name = contestNameJson["name"];
+    color = contestNameJson["color"];
+    language = NULL;
+    dict = dict->getInstance();
 }
 
 ContestName::~ContestName() {}
@@ -88,5 +92,15 @@ std::string ContestName::getColor() {
 }
 
 Language ContestName::getLanguage() {
-    return *language;
+    //search dict by passing in name
+    std::string lName = parsedCN["language"]["name"];
+    std::string lUrl = parsedCN["language"]["url"];
+
+    //if not found in dict
+    if (dict->hasFoundKey("language", lName) == false) {
+        // add to dictionary
+        dict->setLanguageDictEntry(lName, lUrl);
+    }
+
+    return dict->getLanguageDictEntry(lName);
 }

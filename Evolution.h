@@ -54,7 +54,7 @@ private:
     Item* heldItem;
     //Move knownMove; // Moves.h
     //Type knownMoveType; // Pokemon.h
-    Location location;
+    //Location location;
     int minLevel;
     int minHappiness;
     int minBeauty;

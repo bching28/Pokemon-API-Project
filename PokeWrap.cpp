@@ -46,7 +46,6 @@ std::string PokeWrap::berryFirmness(std::string berryFirmnessName) {
 }
 
 BerryFlavor PokeWrap::berryFlavor(std::string berryFlavorName) {
-	//std::string formattedUrl = formatUrl("berry-flavor", berryFlavorName);
 	BerryFlavor berryFlavor(berryFlavorName, "https://pokeapi.co/api/v2/berry-flavor/1"); // 1 == spicy
 
 	return berryFlavor;

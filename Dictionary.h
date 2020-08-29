@@ -5,9 +5,11 @@
 #include <unordered_map>
 #include "Berries.h"
 #include "Contests.h"
+#include "Utility.h"
 
 class BerryFlavor;
 class ContestType;
+class Language;
 
 //std::unordered_map< std::string, std::unordered_map<std::string, BerryFlavor> > berryFlavorDict;
 class Dictionary {
@@ -17,6 +19,7 @@ private:
 
     std::unordered_map < std::string, BerryFlavor* > berryFlavorDict;
     std::unordered_map < std::string, ContestType* > contestTypeDict;
+    std::unordered_map < std::string, Language* > LanguageDict;
 
 public:
     ~Dictionary();
@@ -27,6 +30,8 @@ public:
     ContestType getContestTypeDictEntry(std::string key);
     void setBerryFlavorDictEntry(std::string key, std::string bfUrl);
     BerryFlavor getBerryFlavorDictEntry(std::string key);
+    void setLanguageDictEntry(std::string key, std::string lUrl);
+    Language getLanguageDictEntry(std::string key);
 
     void printBerryFlavorMap();
     void printContestTypeMap();

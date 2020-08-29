@@ -49,7 +49,10 @@ int main() {
 
     std::cout << std::endl << "------------------------------------------------------------" << std::endl;
 
-    std::cout << "Contest Type Response: " << std::endl << testContestResponse.getName() << std::endl;
+    std::cout << "Contest Type Name Response: " << std::endl << testContestResponse.getName() << std::endl;
+
+    std::cout << "Contest Type Names List Response: " << std::endl << testContestResponse.getContestName(0).getLanguage().getUtilityName(1).getLanguage().getName() << std::endl;
+    std::cout << "Contest Type Names List Response: " << std::endl << testContestResponse.getContestName(1).getLanguage().getUtilityName(2).getLanguage().getName() << std::endl;
 
     std::cout << std::endl;
 

@@ -25,6 +25,11 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
             return false;
         }
     }
+    else if (endPoint == "language") {
+        if (LanguageDict.find(key) == LanguageDict.end()) {
+            return false;
+        }
+    }
 
     return true;
 }
@@ -43,6 +48,14 @@ void Dictionary::setBerryFlavorDictEntry(std::string key, std::string bfUrl) {
 
 BerryFlavor Dictionary::getBerryFlavorDictEntry(std::string key) {
     return *berryFlavorDict.at(key);
+}
+
+void Dictionary::setLanguageDictEntry(std::string key, std::string lUrl) {
+    LanguageDict[key] = new Language(key, lUrl);
+}
+
+Language Dictionary::getLanguageDictEntry(std::string key) {
+    return *LanguageDict.at(key);
 }
 
 // for debugging

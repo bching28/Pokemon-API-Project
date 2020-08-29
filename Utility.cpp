@@ -1,24 +1,24 @@
 #include "Utility.h"
 #include "Requests.h"
 
-Language::Language(std::string languageName, bool isFirstTime) {
+Language::Language(std::string name, std::string url) {
+    NamedAPIResource::name = name;
+    NamedAPIResource::url = url;
+
     Requests req;
-    json parsedL = req.retrieveJson("language", languageName);
-    std::cout << "Parsed Language: " << parsedL << std::endl << std::endl;
+    parsedL = req.retrieveJson("language", name);
 
     id = parsedL["id"];
-    name = parsedL["name"];
+    this->name = parsedL["name"];
     official = parsedL["official"];
     iso639 = parsedL["iso639"];
     iso3166 = parsedL["iso3166"];
 
     for (auto& languageName : parsedL["names"]) {
-        if (isFirstTime) {
-            std::cout << languageName << std::endl;
-            isFirstTime = false;
-            names.push_back(new Name(languageName, isFirstTime));
-        }
+        names.push_back(new Name(languageName));
     }
+
+    dict = dict->getInstance();
 }
 
 Language::~Language() {}
@@ -43,11 +43,35 @@ std::string Language::getIso3166() {
     return iso3166;
 }
 
+Name Language::getUtilityName(int index) {
+    return *(names.at(index));
+}
+
 
 // Name
-Name::Name(json nameName, bool isFirstTime) {
-    name = nameName["name"];
-    language = new Language(nameName["language"]["name"], isFirstTime);
+Name::Name(json nameJson) {
+    parsedN = nameJson;
+    name = nameJson["name"];
+    language = NULL;
+    dict = dict->getInstance();
 }
 
 Name::~Name() {}
+
+std::string Name::getName() {
+    return name;
+}
+
+Language Name::getLanguage() {
+    //search dict by passing in name
+    std::string lName = parsedN["language"]["name"];
+    std::string lUrl = parsedN["language"]["url"];
+
+    //if not found in dict
+    if (dict->hasFoundKey("language", lName) == false) {
+        // add to dictionary
+        dict->setLanguageDictEntry(lName, lUrl);
+    }
+
+    return dict->getLanguageDictEntry(lName);
+}

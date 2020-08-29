@@ -29,7 +29,7 @@ private:
     int id;
     std::string name;
     BerryFlavor* berryFlavor;
-    std::vector<ContestName*> names; // vector...probably need unique_ptr's
+    std::vector<ContestName*> names; // vector of ContestName names (which are the key for the dict)
 
     json parsedCT;
     Dictionary* dict;
@@ -51,8 +51,11 @@ private:
     std::string color;
     Language* language;
 
+    json parsedCN;
+    Dictionary* dict;
+
 public:
-    ContestName(json contestNameName, bool isFirstCall = false);
+    ContestName(json contestNameJson);
     ~ContestName();
 
     std::string getName();
