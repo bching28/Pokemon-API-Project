@@ -11,7 +11,6 @@ class BerryFlavor;
 class ContestType;
 class Language;
 
-//std::unordered_map< std::string, std::unordered_map<std::string, BerryFlavor> > berryFlavorDict;
 class Dictionary {
 private:
     Dictionary(); // private constructor for singleton

@@ -70,6 +70,7 @@ int main() {
 
     std::cout << "Berry Flavor Response for ContestType ID: " << std::endl << testBerryFlavorResponse.getContestType().getId() << std::endl;
     std::cout << "Berry Flavor Response for ContetType Name: " << std::endl << testBerryFlavorResponse.getContestType().getName() << std::endl;
+    std::cout << "Berry Flavor Response Name->Language: " << std::endl << testBerryFlavorResponse.getUtilityName(0).getLanguage().getName() << std::endl;
 
     std::cout << std::endl;
 

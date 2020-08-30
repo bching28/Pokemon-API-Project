@@ -6,6 +6,10 @@ Dictionary::Dictionary() {
 
 }
 
+Dictionary::~Dictionary() {
+
+}
+
 Dictionary* Dictionary::getInstance() {
     if (!instance) {
         instance = new Dictionary;

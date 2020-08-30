@@ -1,44 +1,22 @@
 #include "Berries.h"
 #include "Requests.h"
 
-//BerryFlavor::BerryFlavor(std::string berryFlavorName, bool isFirstCall) {
-//    if (isFirstCall) {
-//        Requests req;
-//        json parsedBF = req.retrieveJson("berry-flavor", berryFlavorName);
-//
-//        id = parsedBF["id"];
-//        name = to_string(parsedBF["name"]);
-//    
-//        //contestType = new ContestType(parsedBF["contest_type"], isFirstCall, true);
-//
-//        isFirstCall = false;
-//    }
-//}
-
 BerryFlavor::BerryFlavor(std::string name, std::string url) {
     NamedAPIResource::name = name;
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedBF = req.retrieveJson("berry-flavor", name); //spicy
+    parsedBF = req.retrieveJson("berry-flavor", name);
 
-    id = parsedBF["id"]; //1
-    this->name = to_string(parsedBF["name"]); //spicy
-    //contestType = new ContestType(parsedBF["contest_type"]);
-    //id = 0;
-    //this->name = "";
+    id = parsedBF["id"];
+    this->name = to_string(parsedBF["name"]);
     contestType = NULL;
+
+    for (auto& name : parsedBF["names"]) {
+        names.push_back(new Name(name));
+    }
 
     dict = dict->getInstance();
-}
-
-BerryFlavor::BerryFlavor() {
-    NamedAPIResource::name = "";
-    NamedAPIResource::url = "";
-
-    id = 0;
-    name = "";
-    contestType = NULL;
 }
 
 BerryFlavor::~BerryFlavor() {
@@ -65,4 +43,8 @@ ContestType BerryFlavor::getContestType() {
     }
     dict->printContestTypeMap();
     return dict->getContestTypeDictEntry(ctName);
+}
+
+Name BerryFlavor::getUtilityName(int index) {
+    return *(names.at(index));
 }

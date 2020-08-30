@@ -14,8 +14,8 @@ Language::Language(std::string name, std::string url) {
     iso639 = parsedL["iso639"];
     iso3166 = parsedL["iso3166"];
 
-    for (auto& languageName : parsedL["names"]) {
-        names.push_back(new Name(languageName));
+    for (auto& name : parsedL["names"]) {
+        names.push_back(new Name(name));
     }
 
     dict = dict->getInstance();

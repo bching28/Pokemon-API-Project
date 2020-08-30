@@ -1,28 +1,6 @@
 #include "Contests.h"
 #include "Requests.h"
 
-//ContestType::ContestType(std::string contestTypeName, bool isFirstCall) {
-//    if (isFirstCall) {
-//        Requests req;
-//
-//        //TODO::make a file that has variables for all the endpoints
-//        json parsedCT = req.retrieveJson("contest-type", contestTypeName);
-//
-//        id = parsedCT["id"];
-//        name = to_string(parsedCT["name"]);
-//
-//        //TODO::make funciton to convert id int to name string
-//
-//        //TODO::Still need to fill in NamedAPIResource fields (i.e. name and url)
-//        //berryFlavor = new BerryFlavor(parsedCT["berry_flavor"]["name"], isFirstCall);
-//        berryFlavor = NULL;
-//
-//        for (auto& contestName : parsedCT["names"]) {
-//            names.push_back(new ContestName(contestName, isFirstCall));
-//        }
-//    }
-//}
-
 ContestType::ContestType(std::string name, std::string url) {
     NamedAPIResource::name = name;
     NamedAPIResource::url = url;

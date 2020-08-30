@@ -75,7 +75,7 @@ private:
     std::string name;
     FlavorBerryMap* berries;
     ContestType* contestType;
-    Name* names;
+    std::vector<Name*> names;
 
     json parsedBF;
     Dictionary* dict;
@@ -83,12 +83,12 @@ private:
 public:
     //BerryFlavor(std::string berryFlavor, bool isFirstCall);
     BerryFlavor(std::string name, std::string url);
-    BerryFlavor();
     ~BerryFlavor();
 
     int getId();
     std::string getName();
     ContestType getContestType();
+    Name getUtilityName(int index);
 };
 
 class FlavorBerryMap {
