@@ -38,13 +38,27 @@ private:
     int smoothness;
     int soilDryness;
     BerryFirmness* firmness;
-    BerryFlavorMap* flavors;
+    std::vector<BerryFlavorMap*> flavors;
     Item* item;
     //Type* naturalGiftType; // Pokemon.h
 
+    json parsedB;
+    Dictionary* dict;
+
 public:
-    Berry();
+    Berry(std::string name, std::string url);
     ~Berry();
+    int getId();
+    std::string getName();
+    int getGrowthTime();
+    int getMaxHarvest();
+    int getNaturalGiftPower();
+    int getSize();
+    int getSmoothness();
+    int getSoilDryness();
+    BerryFirmness getFirmness();
+    BerryFlavorMap getFlavors(int index);
+    Item getItem();
 };
 
 class BerryFlavorMap {
@@ -52,28 +66,42 @@ private:
     int potency;
     BerryFlavor* flavor;
 
+    json parsedBFM;
+    Dictionary* dict;
+
 public:
-    BerryFlavorMap();
+    BerryFlavorMap(json berryFlavorMapJson);
     ~BerryFlavorMap();
+
+    int getPotency();
+    BerryFlavor getFlavor();
 };
 
 class BerryFirmness : public NamedAPIResource {
 private:
+    json parsedBF;
+    Dictionary* dict;
+
     int id;
     std::string name;
-    Berry* berries;
-    Name* names;
+    std::vector<Berry*> berries;
+    std::vector<Name*> names;
 
 public:
-    BerryFirmness();
+    BerryFirmness(std::string name, std::string url);
     ~BerryFirmness();
+
+    int getId();
+    std::string getName();
+    Berry getBerries(int index);
+    Name getNames(int index);
 };
 
 class BerryFlavor : public NamedAPIResource {
 private:
     int id;
     std::string name;
-    FlavorBerryMap* berries;
+    std::vector<FlavorBerryMap*> berries;
     ContestType* contestType;
     std::vector<Name*> names;
 
@@ -87,8 +115,9 @@ public:
 
     int getId();
     std::string getName();
+    FlavorBerryMap getBerries(int index);
     ContestType getContestType();
-    Name getUtilityName(int index);
+    Name getNames(int index);
 };
 
 class FlavorBerryMap {
@@ -96,9 +125,15 @@ private:
     int potency;
     Berry* berry;
 
+    json parsedFBM;
+    Dictionary* dict;
+
 public:
-    FlavorBerryMap();
+    FlavorBerryMap(json flavorBerryMapJson);
     ~FlavorBerryMap();
+
+    int getPotency();
+    Berry getBerry();
 };
 
 #endif // BERRIES_H

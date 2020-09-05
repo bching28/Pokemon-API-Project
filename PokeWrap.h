@@ -30,8 +30,8 @@ public:
 	//TODO::function types will change based on the class types created
 
 	// Berries
-	std::string berry         (std::string berryName);
-	std::string berryFirmness (std::string berryFirmnessName);
+	Berry berry         (std::string berryName);
+	BerryFirmness berryFirmness (std::string berryFirmnessName);
 	BerryFlavor berryFlavor   (std::string berryFlavorName);
 
 	// Contests

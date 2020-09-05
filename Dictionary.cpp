@@ -19,8 +19,13 @@ Dictionary* Dictionary::getInstance() {
 }
 
 bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
-    if (endPoint == "contest-type") {
-        if (contestTypeDict.find(key) == contestTypeDict.end()) {
+    if (endPoint == "berry") {
+        if (berryDict.find(key) == berryDict.end()) {
+            return false;
+        }
+    }  
+    else if (endPoint == "berry-firmness") {
+        if (berryFirmnessDict.find(key) == berryFirmnessDict.end()) {
             return false;
         }
     }
@@ -29,8 +34,13 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
             return false;
         }
     }
+    else if (endPoint == "contest-type") {
+        if (contestTypeDict.find(key) == contestTypeDict.end()) {
+            return false;
+        }
+    }
     else if (endPoint == "language") {
-        if (LanguageDict.find(key) == LanguageDict.end()) {
+        if (languageDict.find(key) == languageDict.end()) {
             return false;
         }
     }
@@ -38,12 +48,20 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
     return true;
 }
 
-void Dictionary::setContestTypeDictEntry(std::string key, std::string ctUrl) {
-    contestTypeDict[key] = new ContestType(key, ctUrl);
+void Dictionary::setBerryDictEntry(std::string key, std::string bUrl) {
+    berryDict[key] = new Berry(key, bUrl);;
 }
 
-ContestType Dictionary::getContestTypeDictEntry(std::string key) {
-    return *contestTypeDict.at(key);
+Berry Dictionary::getBerryDictEntry(std::string key) {
+    return *berryDict.at(key);
+}
+
+void Dictionary::setBerryFirmnessDictEntry(std::string key, std::string bUrl) {
+    berryFirmnessDict[key] = new BerryFirmness(key, bUrl);;
+}
+
+BerryFirmness Dictionary::getBerryFirmnessDictEntry(std::string key) {
+    return *berryFirmnessDict.at(key);
 }
 
 void Dictionary::setBerryFlavorDictEntry(std::string key, std::string bfUrl) {
@@ -54,12 +72,20 @@ BerryFlavor Dictionary::getBerryFlavorDictEntry(std::string key) {
     return *berryFlavorDict.at(key);
 }
 
+void Dictionary::setContestTypeDictEntry(std::string key, std::string ctUrl) {
+    contestTypeDict[key] = new ContestType(key, ctUrl);
+}
+
+ContestType Dictionary::getContestTypeDictEntry(std::string key) {
+    return *contestTypeDict.at(key);
+}
+
 void Dictionary::setLanguageDictEntry(std::string key, std::string lUrl) {
-    LanguageDict[key] = new Language(key, lUrl);
+    languageDict[key] = new Language(key, lUrl);
 }
 
 Language Dictionary::getLanguageDictEntry(std::string key) {
-    return *LanguageDict.at(key);
+    return *languageDict.at(key);
 }
 
 // for debugging

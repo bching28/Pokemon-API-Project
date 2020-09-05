@@ -33,20 +33,26 @@ std::string PokeWrap::retrieveHTTPResponse(std::string url) {
 
 // Berries
 
-std::string PokeWrap::berry(std::string berryName) {
+Berry PokeWrap::berry(std::string berryName) {
 	std::string formattedUrl = formatUrl("berry", berryName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	Berry berry(berryName, formattedUrl);
+
+	return berry;
 }
 
-std::string PokeWrap::berryFirmness(std::string berryFirmnessName) {
+BerryFirmness PokeWrap::berryFirmness(std::string berryFirmnessName) {
 	std::string formattedUrl = formatUrl("berry-firmness", berryFirmnessName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	BerryFirmness berryFirmness(berryFirmnessName, formattedUrl);
+
+	return berryFirmness;
 }
 
 BerryFlavor PokeWrap::berryFlavor(std::string berryFlavorName) {
-	BerryFlavor berryFlavor(berryFlavorName, "https://pokeapi.co/api/v2/berry-flavor/1"); // 1 == spicy
+	std::string formattedUrl = formatUrl("berry-flavor", berryFlavorName);
+
+	BerryFlavor berryFlavor(berryFlavorName, formattedUrl); // 1 == spicy
 
 	return berryFlavor;
 }

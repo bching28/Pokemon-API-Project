@@ -43,7 +43,7 @@ std::string Language::getIso3166() {
     return iso3166;
 }
 
-Name Language::getUtilityName(int index) {
+Name Language::getNames(int index) {
     return *(names.at(index));
 }
 

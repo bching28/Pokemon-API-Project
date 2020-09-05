@@ -33,7 +33,7 @@ public:
     bool getOfficial();
     std::string getIso639();
     std::string getIso3166();
-    Name getUtilityName(int index);
+    Name getNames(int index);
 };
 
 class Description {
