@@ -2,6 +2,7 @@
 #define ITEMS_H
 
 #include <iostream>
+#include "Dictionary.h"
 #include "Evolution.h"
 #include "Games.h"
 //#include "Pokemon.h"
@@ -11,6 +12,7 @@
 using json = nlohmann::json;
 
 // forward declarations
+class Dictionary;
 class Item;
 class ItemAttribute;
 class ItemCategory;
@@ -33,13 +35,16 @@ class Version;                // Games.h
 
 class Item : public NamedAPIResource {
 private:
+    json parsedI;
+    Dictionary* dict;
+
     int id;
     std::string name;
     int cost;
     int flingPower;
-    ItemFlingEffect* flintEffect;
-    ItemAttribute* attributes;
-    ItemCategory* category;
+    //ItemFlingEffect* flintEffect;
+    //ItemAttribute* attributes;
+    //ItemCategory* category;
     //VerboseEffect effectEntries; // Utility.h
     //VersionGroupFlavorText flavorTextEntries; // Utility.h
     //GenerationGameIndex gameIndices;  // Utility.h
@@ -50,8 +55,12 @@ private:
     //MachineVersionDetail machines; // Utility.h
 
 public:
-    Item();
+    Item(std::string name, std::string url);
     ~Item();
+
+    ItemFlingEffect getFlintEffect();
+    //ItemAttribute* attributes;
+    //ItemCategory* category;
 };
 
 class ItemSprites {
@@ -109,16 +118,21 @@ public:
     ~ItemCategory();
 };
 
-class ItemFlingEffect {
+class ItemFlingEffect : public NamedAPIResource {
 private:
+    json parsedIFE;
+    Dictionary* dict;
+
     int id;
     std::string name;
     Effect* effectEntries;
     Item* items;
 
 public:
-    ItemFlingEffect();
+    ItemFlingEffect(std::string name, std::string url);
     ~ItemFlingEffect();
+
+    std::string getName();
 };
 
 class ItemPocket {

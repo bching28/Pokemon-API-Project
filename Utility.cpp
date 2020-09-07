@@ -9,10 +9,10 @@ Language::Language(std::string name, std::string url) {
     parsedL = req.retrieveJson("language", name);
 
     id = parsedL["id"];
-    this->name = parsedL["name"];
+    this->name = to_string(parsedL["name"]);
     official = parsedL["official"];
-    iso639 = parsedL["iso639"];
-    iso3166 = parsedL["iso3166"];
+    iso639 = to_string(parsedL["iso639"]);
+    iso3166 = to_string(parsedL["iso3166"]);
 
     for (auto& name : parsedL["names"]) {
         names.push_back(new Name(name));
@@ -51,7 +51,7 @@ Name Language::getNames(int index) {
 // Name
 Name::Name(json nameJson) {
     parsedN = nameJson;
-    name = nameJson["name"];
+    name = to_string(nameJson["name"]);
     language = NULL;
     dict = dict->getInstance();
 }

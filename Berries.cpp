@@ -11,6 +11,8 @@ Berry::Berry(std::string name, std::string url) {
     Requests req;
     parsedB = req.retrieveJson("berry", name);
 
+    dict = dict->getInstance();
+
     this->id = parsedB["id"];
     this->name = to_string(parsedB["name"]);
     this->growthTime = parsedB["growth_time"];
@@ -81,6 +83,20 @@ BerryFirmness Berry::getFirmness() {
 
 BerryFlavorMap Berry::getFlavors(int index) {
     return *(this->flavors.at(index));
+}
+
+Item Berry::getItem() {
+    //search dict by passing in name
+    std::string iName = parsedB["item"]["name"];
+    std::string iUrl = parsedB["item"]["url"];
+
+    //if not found in dict
+    if (dict->hasFoundKey("item", iName) == false) {
+        // add to dictionary
+        dict->setItemDictEntry(iName, iUrl);
+    }
+
+    return dict->getItemDictEntry(iName);
 }
 
 // Berry Flavor Map

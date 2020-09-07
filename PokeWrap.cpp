@@ -142,10 +142,12 @@ std::string PokeWrap::versionGroup(std::string versionGroupName) {
 
 // Items
 
-std::string PokeWrap::item(std::string itemName) {
+Item PokeWrap::item(std::string itemName) {
 	std::string formattedUrl = formatUrl("item", itemName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	Item item(itemName, formattedUrl);
+
+	return item;
 }
 
 std::string PokeWrap::itemAttribute(std::string itemAttributeName) {
@@ -160,10 +162,12 @@ std::string PokeWrap::itemCategory(std::string itemCategoryName) {
 	return retrieveHTTPResponse(formattedUrl);
 }
 
-std::string PokeWrap::itemFlingEffect(std::string itemFlingEffectName) {
+ItemFlingEffect PokeWrap::itemFlingEffect(std::string itemFlingEffectName) {
 	std::string formattedUrl = formatUrl("item-fling-effect", itemFlingEffectName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	ItemFlingEffect itemFlingEffect(itemFlingEffectName, formattedUrl);
+
+	return itemFlingEffect;
 }
 
 std::string PokeWrap::itemPocket(std::string itemPocketName) {

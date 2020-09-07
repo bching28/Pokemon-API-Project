@@ -25,8 +25,6 @@ class Item;            // Items.h
 class Name;            // Utility.h
 //class Type;            // Pokemon.h
 
-//dict = new Dictionary();
-
 class Berry : public NamedAPIResource {
 private:
     int id;

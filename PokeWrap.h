@@ -30,9 +30,9 @@ public:
 	//TODO::function types will change based on the class types created
 
 	// Berries
-	Berry berry         (std::string berryName);
+	Berry         berry         (std::string berryName);
 	BerryFirmness berryFirmness (std::string berryFirmnessName);
-	BerryFlavor berryFlavor   (std::string berryFlavorName);
+	BerryFlavor   berryFlavor   (std::string berryFlavorName);
 
 	// Contests
 	ContestType contestType        (std::string contestTypeName);
@@ -55,10 +55,10 @@ public:
 	std::string versionGroup (std::string versionGroupName);
 
 	// Items
-	std::string item            (std::string itemName);
+	Item            item            (std::string itemName);
 	std::string itemAttribute   (std::string itemAttributeName);
 	std::string itemCategory    (std::string itemCategoryName);
-	std::string itemFlingEffect (std::string itemFlingEffectName);
+	ItemFlingEffect itemFlingEffect (std::string itemFlingEffectName);
 	std::string itemPocket      (std::string itemPocketName);
 
 	// Locations

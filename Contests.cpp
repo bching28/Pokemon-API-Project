@@ -53,8 +53,8 @@ ContestName ContestType::getContestName(int index) {
 // ContestName
 ContestName::ContestName(json contestNameJson) {
     parsedCN = contestNameJson;
-    name = parsedCN["name"];
-    color = parsedCN["color"];
+    name = to_string(parsedCN["name"]);
+    color = to_string(parsedCN["color"]);
     language = NULL;
     dict = dict->getInstance();
 }

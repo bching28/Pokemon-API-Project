@@ -34,6 +34,7 @@ int main() {
     std::string testPokemonResponse = pw.pokemon(pokemonName);
     Berry testBerryResponse = pw.berry(berryName);
     ContestType testContestResponse = pw.contestType("cool");
+    Item testItemResponse = pw.item("master-ball");
     BerryFlavor testBerryFlavorResponse = pw.berryFlavor("spicy");
     BerryFirmness testBerryFirmnessResponse = pw.berryFirmness("very-soft");
 
@@ -79,8 +80,11 @@ int main() {
 
     std::cout << "CT->BF: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getName() << std::endl;
     std::cout << "CT->BF->CT: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getContestType().getName() << std::endl;
+    std::cout << "CT->BF->CT->BF: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getContestType().getBerryFlavor().getName() << std::endl;
+
+    //std::cout << "Get Fling Effect Name: " << std::endl << testItemResponse.getFlintEffect().getName() << std::endl;
 
     std::cout << "Done" << std::endl;
-
+     
     return 0;
 }

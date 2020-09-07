@@ -5,12 +5,15 @@
 #include <unordered_map>
 #include "Berries.h"
 #include "Contests.h"
+#include "Items.h"
 #include "Utility.h"
 
 class Berry;
 class BerryFirmness;
 class BerryFlavor;
 class ContestType;
+class Item;
+class ItemFlingEffect;
 class Language;
 
 class Dictionary {
@@ -22,6 +25,8 @@ private:
     std::unordered_map < std::string, BerryFirmness* > berryFirmnessDict;
     std::unordered_map < std::string, BerryFlavor* > berryFlavorDict;
     std::unordered_map < std::string, ContestType* > contestTypeDict;
+    std::unordered_map < std::string, Item* > itemDict;
+    std::unordered_map < std::string, ItemFlingEffect* > itemFlingEffectDict;
     std::unordered_map < std::string, Language* > languageDict;
 
 public:
@@ -41,6 +46,12 @@ public:
 
     void setContestTypeDictEntry(std::string key, std::string ctUrl);
     ContestType getContestTypeDictEntry(std::string key);
+
+    void setItemDictEntry(std::string key, std::string iUrl);
+    Item getItemDictEntry(std::string key);
+
+    void setItemFlingEffectDictEntry(std::string key, std::string iUrl);
+    ItemFlingEffect getItemFlingEffectDictEntry(std::string key);
 
     void setLanguageDictEntry(std::string key, std::string lUrl);
     Language getLanguageDictEntry(std::string key);

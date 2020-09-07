@@ -80,6 +80,22 @@ ContestType Dictionary::getContestTypeDictEntry(std::string key) {
     return *contestTypeDict.at(key);
 }
 
+void Dictionary::setItemDictEntry(std::string key, std::string iUrl) {
+    itemDict[key] = new Item(key, iUrl);
+}
+
+Item Dictionary::getItemDictEntry(std::string key) {
+    return *itemDict.at(key);
+}
+
+void Dictionary::setItemFlingEffectDictEntry(std::string key, std::string ifeUrl) {
+    itemFlingEffectDict[key] = new ItemFlingEffect(key, ifeUrl);;
+}
+
+ItemFlingEffect Dictionary::getItemFlingEffectDictEntry(std::string key) {
+    return *itemFlingEffectDict.at(key);
+}
+
 void Dictionary::setLanguageDictEntry(std::string key, std::string lUrl) {
     languageDict[key] = new Language(key, lUrl);
 }
