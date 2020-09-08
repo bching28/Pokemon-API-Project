@@ -12,6 +12,8 @@ class Berry;
 class BerryFirmness;
 class BerryFlavor;
 class ContestType;
+class EncounterCondition;
+class EncounterConditionValue;
 class Item;
 class ItemFlingEffect;
 class Language;
@@ -25,6 +27,8 @@ private:
     std::unordered_map < std::string, BerryFirmness* > berryFirmnessDict;
     std::unordered_map < std::string, BerryFlavor* > berryFlavorDict;
     std::unordered_map < std::string, ContestType* > contestTypeDict;
+    std::unordered_map < std::string, EncounterCondition* > encounterConditionDict;
+    std::unordered_map < std::string, EncounterConditionValue* > encounterConditionValueDict;
     std::unordered_map < std::string, Item* > itemDict;
     std::unordered_map < std::string, ItemFlingEffect* > itemFlingEffectDict;
     std::unordered_map < std::string, Language* > languageDict;
@@ -46,6 +50,9 @@ public:
 
     void setContestTypeDictEntry(std::string key, std::string ctUrl);
     ContestType getContestTypeDictEntry(std::string key);
+
+    void setEncounterConditionDictEntry(std::string key, std::string url);
+    EncounterCondition getEncounterConditionDictEntry(std::string key);
 
     void setItemDictEntry(std::string key, std::string iUrl);
     Item getItemDictEntry(std::string key);

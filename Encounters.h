@@ -49,12 +49,12 @@ private:
     std::vector<EncounterConditionValue*> values;
 
 public:
-    EncounterCondition();
+    EncounterCondition(std::string name, std::string url);
     ~EncounterCondition();
 
     int getId();
     std::string getName();
-    Name getNames();
+    Name getNames(int index);
     EncounterConditionValue getValues();
 };
 
@@ -66,12 +66,17 @@ private:
 
     int id;
     std::string name;
-    EncounterCondition* condition;
-    Name* names;
+    //EncounterCondition* condition;
+    std::vector<Name*> names;
 
 public:
-    EncounterConditionValue();
+    EncounterConditionValue(std::string name, std::string url);
     ~EncounterConditionValue();
+
+    int getId();
+    std::string getName();
+    EncounterCondition getCondition();
+    Name getNames(int index);
 };
 
 #endif // ENCOUNTERS_H
