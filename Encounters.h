@@ -2,6 +2,7 @@
 #define ENCOUNTERS_H
 
 #include <iostream>
+#include "Dictionary.h"
 #include "Resource.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
@@ -9,38 +10,60 @@
 using json = nlohmann::json;
 
 // forward declarations
+class Dictionary;
 class EncounterCondition;
 class EncounterConditionValue;
 class EncounterMethod;
-
 class Name; // Utility.h
 
-class EncounterMethod {
+// Encounter Method
+class EncounterMethod : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     int order;
-    Name* names;
+    std::vector<Name*> names;
 
 public:
-    EncounterMethod();
+    EncounterMethod(std::string name, std::string url);
     ~EncounterMethod();
+
+    int getId();
+    std::string getName();
+    int getOrder();
+    Name getNames(int index);
 };
 
+// Encounter Condition
 class EncounterCondition : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
-    Name* names;
-    EncounterConditionValue* values;
+    std::vector<Name*> names;
+    std::vector<EncounterConditionValue*> values;
 
 public:
     EncounterCondition();
     ~EncounterCondition();
+
+    int getId();
+    std::string getName();
+    Name getNames();
+    EncounterConditionValue getValues();
 };
 
+// Encounter Condition Value
 class EncounterConditionValue : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     EncounterCondition* condition;
