@@ -62,6 +62,10 @@ EncounterCondition::EncounterCondition(std::string name, std::string url) {
     for (auto& name : this->parsedJson["names"]) {
         this->names.push_back(new Name(name));
     }
+
+    for (auto& value : parsedJson["values"]) {
+        this->values.push_back(new EncounterConditionValue(value["name"], value["url"]));
+    }
 }
 
 EncounterCondition::~EncounterCondition() {
@@ -80,9 +84,9 @@ Name EncounterCondition::getNames(int index) {
     return *(this->names.at(index));
 }
 
-//EncounterConditionValue EncounterCondition::getValues() {
-//
-//}
+EncounterConditionValue EncounterCondition::getValues(int index) {
+    return *(this->values.at(index));
+}
 
 // Encounter Condition Value
 // -------------------------------------------------------------------------

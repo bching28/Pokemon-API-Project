@@ -55,7 +55,7 @@ public:
     int getId();
     std::string getName();
     Name getNames(int index);
-    EncounterConditionValue getValues();
+    EncounterConditionValue getValues(int index);
 };
 
 // Encounter Condition Value
