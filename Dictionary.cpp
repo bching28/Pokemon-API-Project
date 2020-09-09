@@ -7,7 +7,12 @@ Dictionary::Dictionary() {
 }
 
 Dictionary::~Dictionary() {
-
+    //TODO::delete every dictionary
+    std::unordered_map < std::string, BerryFlavor* >::iterator itr = berryFlavorDict.begin();
+    while (itr != berryFlavorDict.end()) {
+        delete itr->second;
+        itr++;
+    }
 }
 
 Dictionary* Dictionary::getInstance() {
@@ -16,6 +21,11 @@ Dictionary* Dictionary::getInstance() {
     }
     
     return instance;
+}
+
+void Dictionary::terminate() {
+    // Call Constructor
+    Dictionary::~Dictionary();
 }
 
 bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {

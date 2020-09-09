@@ -36,6 +36,7 @@ private:
 public:
     ~Dictionary();
     static Dictionary* getInstance();
+    void terminate();
 
     bool hasFoundKey(std::string endPoint, std::string key);
 

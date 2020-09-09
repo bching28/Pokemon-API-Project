@@ -8,6 +8,7 @@
 #include <nlohmann/json.hpp>
 #include "PokeWrap.h"
 #include <typeinfo>
+#include "Dictionary.h"
 
 using json = nlohmann::json;
 
@@ -93,6 +94,10 @@ int main() {
     //std::cout << "Get Fling Effect Name: " << std::endl << testItemResponse.getFlintEffect().getName() << std::endl;
 
     std::cout << "Done" << std::endl;
+
+    Dictionary* dict;
+    dict = dict->getInstance();
+    dict->terminate();
      
     return 0;
 }
