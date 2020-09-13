@@ -91,7 +91,7 @@ int main() {
     std::cout << "EncounterCondition Values[0] Condition Name:" << std::endl << testEncounterConditionResponse.getValues(0).getCondition().getName() << std::endl;
     std::cout << "EncounterCondition Values[1] Condition Name:" << std::endl << testEncounterConditionResponse.getValues(1).getCondition().getName() << std::endl;
 
-    //std::cout << "Get Fling Effect Name: " << std::endl << testItemResponse.getFlintEffect().getName() << std::endl;
+    std::cout << "Get Fling Effect Name: " << std::endl << testItemResponse.getFlintEffect() << std::endl;
 
     std::cout << "Done" << std::endl;
 

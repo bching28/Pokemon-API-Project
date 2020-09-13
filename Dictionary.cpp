@@ -138,8 +138,8 @@ void Dictionary::setItemFlingEffectDictEntry(std::string key, std::string ifeUrl
     itemFlingEffectDict[key] = new ItemFlingEffect(key, ifeUrl);;
 }
 
-ItemFlingEffect Dictionary::getItemFlingEffectDictEntry(std::string key) {
-    return *itemFlingEffectDict.at(key);
+ItemFlingEffect* Dictionary::getItemFlingEffectDictEntry(std::string key) {
+    return itemFlingEffectDict.at(key);
 }
 
 void Dictionary::setLanguageDictEntry(std::string key, std::string lUrl) {

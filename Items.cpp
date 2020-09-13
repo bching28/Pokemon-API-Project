@@ -29,13 +29,12 @@ Item::~Item() {
 
 }
 
-ItemFlingEffect Item::getFlintEffect() {
+ItemFlingEffect* Item::getFlintEffect() {
     std::string feName;
     std::string feUrl;
 
     if (parsedI["fling_effect"].is_null()) {
-        feName = "";
-        feUrl = "";
+        return NULL;
     } else {
         //search dict by passing in name
         feName = to_string(parsedI["fling_effect"]["name"]);

@@ -64,7 +64,7 @@ public:
     Item getItemDictEntry(std::string key);
 
     void setItemFlingEffectDictEntry(std::string key, std::string iUrl);
-    ItemFlingEffect getItemFlingEffectDictEntry(std::string key);
+    ItemFlingEffect* getItemFlingEffectDictEntry(std::string key);
 
     void setLanguageDictEntry(std::string key, std::string lUrl);
     Language getLanguageDictEntry(std::string key);

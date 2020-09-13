@@ -58,7 +58,7 @@ public:
     Item(std::string name, std::string url);
     ~Item();
 
-    ItemFlingEffect getFlintEffect();
+    ItemFlingEffect* getFlintEffect();
     //ItemAttribute* attributes;
     //ItemCategory* category;
 };
