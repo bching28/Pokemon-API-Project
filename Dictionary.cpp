@@ -7,7 +7,12 @@ Dictionary::Dictionary() {
 }
 
 Dictionary::~Dictionary() {
-
+    //TODO::delete every dictionary
+    std::unordered_map < std::string, BerryFlavor* >::iterator itr = berryFlavorDict.begin();
+    while (itr != berryFlavorDict.end()) {
+        delete itr->second;
+        itr++;
+    }
 }
 
 Dictionary* Dictionary::getInstance() {
@@ -16,6 +21,11 @@ Dictionary* Dictionary::getInstance() {
     }
     
     return instance;
+}
+
+void Dictionary::terminate() {
+    // Call Constructor
+    Dictionary::~Dictionary();
 }
 
 bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
@@ -36,6 +46,26 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
     }
     else if (endPoint == "contest-type") {
         if (contestTypeDict.find(key) == contestTypeDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "encounter-condition") {
+        if (encounterConditionDict.find(key) == encounterConditionDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "encounter-condition-value") {
+        if (encounterConditionValueDict.find(key) == encounterConditionValueDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "item") {
+        if (itemDict.find(key) == itemDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "item-fling-effect") {
+        if (itemFlingEffectDict.find(key) == itemFlingEffectDict.end()) {
             return false;
         }
     }
@@ -78,6 +108,14 @@ void Dictionary::setContestTypeDictEntry(std::string key, std::string ctUrl) {
 
 ContestType Dictionary::getContestTypeDictEntry(std::string key) {
     return *contestTypeDict.at(key);
+}
+
+void Dictionary::setEncounterConditionDictEntry(std::string key, std::string url) {
+    encounterConditionDict[key] = new EncounterCondition(key, url);
+}
+
+EncounterCondition Dictionary::getEncounterConditionDictEntry(std::string key) {
+    return *encounterConditionDict.at(key);
 }
 
 void Dictionary::setItemDictEntry(std::string key, std::string iUrl) {

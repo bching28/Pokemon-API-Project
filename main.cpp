@@ -8,6 +8,7 @@
 #include <nlohmann/json.hpp>
 #include "PokeWrap.h"
 #include <typeinfo>
+#include "Dictionary.h"
 
 using json = nlohmann::json;
 
@@ -37,6 +38,7 @@ int main() {
     Item testItemResponse = pw.item("master-ball");
     BerryFlavor testBerryFlavorResponse = pw.berryFlavor("spicy");
     BerryFirmness testBerryFirmnessResponse = pw.berryFirmness("very-soft");
+    EncounterCondition testEncounterConditionResponse = pw.encounterCondition("swarm");
 
     json j = json::parse(testPokemonResponse);
 
@@ -82,9 +84,20 @@ int main() {
     std::cout << "CT->BF->CT: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getContestType().getName() << std::endl;
     std::cout << "CT->BF->CT->BF: " << std::endl << testBerryFlavorResponse.getContestType().getBerryFlavor().getContestType().getBerryFlavor().getName() << std::endl;
 
+    std::cout << std::endl << "------------------------------------------------------------" << std::endl << "Encounter Condition" << std::endl;
+
+    std::cout << "EncounterCondition Values[0] Name:" << std::endl << testEncounterConditionResponse.getValues(0).getName() << std::endl;
+    std::cout << "EncounterCondition Values[1] Name:" << std::endl << testEncounterConditionResponse.getValues(1).getName() << std::endl;
+    std::cout << "EncounterCondition Values[0] Condition Name:" << std::endl << testEncounterConditionResponse.getValues(0).getCondition().getName() << std::endl;
+    std::cout << "EncounterCondition Values[1] Condition Name:" << std::endl << testEncounterConditionResponse.getValues(1).getCondition().getName() << std::endl;
+
     //std::cout << "Get Fling Effect Name: " << std::endl << testItemResponse.getFlintEffect().getName() << std::endl;
 
     std::cout << "Done" << std::endl;
+
+    Dictionary* dict;
+    dict = dict->getInstance();
+    dict->terminate();
      
     return 0;
 }

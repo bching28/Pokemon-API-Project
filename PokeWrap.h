@@ -40,9 +40,9 @@ public:
 	std::string superContestEffect (std::string superContestEffectName);
 
 	// Encounters
-	std::string encounterMethod         (std::string encounterMethodName);
-	std::string encounterCondition      (std::string encounterConditionName);
-	std::string encounterConditionValue (std::string encounterConditionValueName);
+	EncounterMethod encounterMethod         (std::string encounterMethodName);
+	EncounterCondition encounterCondition      (std::string encounterConditionName);
+	EncounterConditionValue encounterConditionValue (std::string encounterConditionValueName);
 
 	// Evolution
 	std::string evolutionChain   (std::string evolutionChainName);

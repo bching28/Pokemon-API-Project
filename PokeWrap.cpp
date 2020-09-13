@@ -82,22 +82,28 @@ std::string PokeWrap::superContestEffect(std::string superContestEffectName) {
 
 // Encounters
 
-std::string PokeWrap::encounterMethod(std::string encounterMethodName) {
+EncounterMethod PokeWrap::encounterMethod(std::string encounterMethodName) {
 	std::string formattedUrl = formatUrl("encounter-method", encounterMethodName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	EncounterMethod encounterMethod(encounterMethodName, formattedUrl);
+
+	return encounterMethod;
 }
 
-std::string PokeWrap::encounterCondition(std::string encounterConditionName) {
+EncounterCondition PokeWrap::encounterCondition(std::string encounterConditionName) {
 	std::string formattedUrl = formatUrl("encounter-condition", encounterConditionName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	EncounterCondition encounterCondition(encounterConditionName, formattedUrl);
+
+	return encounterCondition;
 }
 
-std::string PokeWrap::encounterConditionValue(std::string encounterConditionValueName) {
+EncounterConditionValue PokeWrap::encounterConditionValue(std::string encounterConditionValueName) {
 	std::string formattedUrl = formatUrl("encounter-condition-value", encounterConditionValueName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	EncounterConditionValue encounterConditionValue(encounterConditionValueName, formattedUrl);
+
+	return encounterConditionValue;
 }
 
 // Evolution
