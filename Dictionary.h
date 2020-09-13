@@ -29,6 +29,7 @@ private:
     std::unordered_map < std::string, BerryFlavor* > berryFlavorDict;
     std::unordered_map < std::string, ContestType* > contestTypeDict;
     std::unordered_map < std::string, ContestEffect* > contestEffectDict;
+    //std::unordered_map < std::string, SuperContestEffect* > superContestEffectDict;
     std::unordered_map < std::string, EncounterCondition* > encounterConditionDict;
     std::unordered_map < std::string, EncounterConditionValue* > encounterConditionValueDict;
     std::unordered_map < std::string, Item* > itemDict;
@@ -42,31 +43,34 @@ public:
 
     bool hasFoundKey(std::string endPoint, std::string key);
 
-    void setBerryDictEntry(std::string key, std::string bUrl);
+    void setBerryDictEntry(std::string key, std::string url);
     Berry getBerryDictEntry(std::string key);
 
-    void setBerryFirmnessDictEntry(std::string key, std::string bUrl);
+    void setBerryFirmnessDictEntry(std::string key, std::string url);
     BerryFirmness getBerryFirmnessDictEntry(std::string key);
 
-    void setBerryFlavorDictEntry(std::string key, std::string bfUrl);
+    void setBerryFlavorDictEntry(std::string key, std::string url);
     BerryFlavor getBerryFlavorDictEntry(std::string key);
 
-    void setContestTypeDictEntry(std::string key, std::string ctUrl);
+    void setContestTypeDictEntry(std::string key, std::string url);
     ContestType getContestTypeDictEntry(std::string key);
 
-    void setContestEffectDictEntry(std::string key, std::string ceUrl);
+    void setContestEffectDictEntry(std::string key, std::string url);
     ContestEffect getContestEffectDictEntry(std::string key);
+
+    /*void setSuperContestEffectDictEntry(std::string key, std::string url);
+    SuperContestEffect getSuperContestEffectDictEntry(std::string key);*/
 
     void setEncounterConditionDictEntry(std::string key, std::string url);
     EncounterCondition getEncounterConditionDictEntry(std::string key);
 
-    void setItemDictEntry(std::string key, std::string iUrl);
+    void setItemDictEntry(std::string key, std::string url);
     Item getItemDictEntry(std::string key);
 
-    void setItemFlingEffectDictEntry(std::string key, std::string iUrl);
+    void setItemFlingEffectDictEntry(std::string key, std::string url);
     ItemFlingEffect* getItemFlingEffectDictEntry(std::string key);
 
-    void setLanguageDictEntry(std::string key, std::string lUrl);
+    void setLanguageDictEntry(std::string key, std::string url);
     Language getLanguageDictEntry(std::string key);
 
     void printBerryFlavorMap();

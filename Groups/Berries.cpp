@@ -9,26 +9,22 @@ Berry::Berry(std::string name, std::string url) {
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedB = req.retrieveJson("berry", name);
+    parsedJson = req.retrieveJson("berry", name);
 
     dict = dict->getInstance();
 
-    this->id = parsedB["id"];
-    this->name = to_string(parsedB["name"]);
-    this->growthTime = parsedB["growth_time"];
-    this->maxHarvest = parsedB["max_harvest"];
-    this->naturalGiftPower = parsedB["natural_gift_power"];
-    this->size = parsedB["size"];
-    this->smoothness = parsedB["smoothness"];
-    this->soilDryness = parsedB["soil_dryness"];
+    this->id = parsedJson["id"];
+    this->name = to_string(parsedJson["name"]);
+    this->growthTime = parsedJson["growth_time"];
+    this->maxHarvest = parsedJson["max_harvest"];
+    this->naturalGiftPower = parsedJson["natural_gift_power"];
+    this->size = parsedJson["size"];
+    this->smoothness = parsedJson["smoothness"];
+    this->soilDryness = parsedJson["soil_dryness"];
 
-    firmness = NULL;
-
-    for (auto& flavor : parsedB["flavors"]) {
+    for (auto& flavor : parsedJson["flavors"]) {
         flavors.push_back(new BerryFlavorMap(flavor));
     }
-
-    item = NULL;
 }
 
 Berry::~Berry() {
@@ -69,8 +65,8 @@ int Berry::getSoilDryness() {
 
 BerryFirmness Berry::getFirmness() {
     //search dict by passing in name
-    std::string fName = parsedB["firmness"]["name"];
-    std::string fUrl = parsedB["firmness"]["url"];
+    std::string fName = parsedJson["firmness"]["name"];
+    std::string fUrl = parsedJson["firmness"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("berry-firmness", fName) == false) {
@@ -87,8 +83,8 @@ BerryFlavorMap Berry::getFlavors(int index) {
 
 Item Berry::getItem() {
     //search dict by passing in name
-    std::string iName = parsedB["item"]["name"];
-    std::string iUrl = parsedB["item"]["url"];
+    std::string iName = parsedJson["item"]["name"];
+    std::string iUrl = parsedJson["item"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("item", iName) == false) {
@@ -103,9 +99,9 @@ Item Berry::getItem() {
 // -------------------------------------------------------------------------
 // Constructor
 BerryFlavorMap::BerryFlavorMap(json berryFlavorMapJson) {
-    parsedBFM = berryFlavorMapJson;
-    potency = parsedBFM["potency"];
-    flavor = NULL;
+    parsedJson = berryFlavorMapJson;
+    potency = parsedJson["potency"];
+
     dict = dict->getInstance();
 }
 
@@ -119,8 +115,8 @@ int BerryFlavorMap::getPotency() {
 
 BerryFlavor BerryFlavorMap::getFlavor() {
     //search dict by passing in name
-    std::string fName = parsedBFM["flavor"]["name"];
-    std::string fUrl = parsedBFM["flavor"]["url"];
+    std::string fName = parsedJson["flavor"]["name"];
+    std::string fUrl = parsedJson["flavor"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("language", fName) == false) {
@@ -139,18 +135,18 @@ BerryFirmness::BerryFirmness(std::string name, std::string url) {
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedBF = req.retrieveJson("berry-firmness", name);
+    parsedJson = req.retrieveJson("berry-firmness", name);
 
     dict = dict->getInstance();
 
-    this->id = parsedBF["id"];
-    this->name = to_string(parsedBF["name"]);
+    this->id = parsedJson["id"];
+    this->name = to_string(parsedJson["name"]);
 
-    for (auto& berry : parsedBF["berries"]) {
+    for (auto& berry : parsedJson["berries"]) {
         berries.push_back(new Berry(berry["name"], berry["url"]));
     }
 
-    for (auto& name : parsedBF["names"]) {
+    for (auto& name : parsedJson["names"]) {
         names.push_back(new Name(name));
     }
 }
@@ -184,18 +180,16 @@ BerryFlavor::BerryFlavor(std::string name, std::string url) {
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedBF = req.retrieveJson("berry-flavor", name);
+    parsedJson = req.retrieveJson("berry-flavor", name);
 
-    this->id = parsedBF["id"];
-    this->name = to_string(parsedBF["name"]);
+    this->id = parsedJson["id"];
+    this->name = to_string(parsedJson["name"]);
 
-    for (auto& berry : parsedBF["berries"]) {
+    for (auto& berry : parsedJson["berries"]) {
         berries.push_back(new FlavorBerryMap(berry));
     }
 
-    contestType = NULL;
-
-    for (auto& name : parsedBF["names"]) {
+    for (auto& name : parsedJson["names"]) {
         names.push_back(new Name(name));
     }
 
@@ -221,8 +215,8 @@ FlavorBerryMap BerryFlavor::getBerries(int index) {
 
 ContestType BerryFlavor::getContestType() {
     //search dict by passing in name
-    std::string ctName = parsedBF["contest_type"]["name"];
-    std::string ctUrl = parsedBF["contest_type"]["url"];
+    std::string ctName = parsedJson["contest_type"]["name"];
+    std::string ctUrl = parsedJson["contest_type"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("contest-type", ctName) == false) {
@@ -241,9 +235,9 @@ Name BerryFlavor::getNames(int index) {
 // -------------------------------------------------------------------------
 // Constructor
 FlavorBerryMap::FlavorBerryMap(json flavorBerryMapJson) {
-    parsedFBM = flavorBerryMapJson;
-    potency = parsedFBM["potency"];
-    berry = NULL;
+    parsedJson = flavorBerryMapJson;
+    potency = parsedJson["potency"];
+
     dict = dict->getInstance();
 }
 
@@ -257,8 +251,8 @@ int FlavorBerryMap::getPotency() {
 
 Berry FlavorBerryMap::getBerry() {
     //search dict by passing in name
-    std::string bName = parsedFBM["berry"]["name"];
-    std::string bUrl = parsedFBM["berry"]["url"];
+    std::string bName = parsedJson["berry"]["name"];
+    std::string bUrl = parsedJson["berry"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("berry", bName) == false) {

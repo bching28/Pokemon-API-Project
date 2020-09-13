@@ -27,6 +27,9 @@ class Name;            // Utility.h
 
 class Berry : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     int growthTime;
@@ -35,13 +38,8 @@ private:
     int size;
     int smoothness;
     int soilDryness;
-    BerryFirmness* firmness;
     std::vector<BerryFlavorMap*> flavors;
-    Item* item;
     //Type* naturalGiftType; // Pokemon.h
-
-    json parsedB;
-    Dictionary* dict;
 
 public:
     Berry(std::string name, std::string url);
@@ -61,11 +59,10 @@ public:
 
 class BerryFlavorMap {
 private:
-    int potency;
-    BerryFlavor* flavor;
-
-    json parsedBFM;
+    json parsedJson;
     Dictionary* dict;
+
+    int potency;
 
 public:
     BerryFlavorMap(json berryFlavorMapJson);
@@ -77,7 +74,7 @@ public:
 
 class BerryFirmness : public NamedAPIResource {
 private:
-    json parsedBF;
+    json parsedJson;
     Dictionary* dict;
 
     int id;
@@ -97,14 +94,13 @@ public:
 
 class BerryFlavor : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     std::vector<FlavorBerryMap*> berries;
-    ContestType* contestType;
     std::vector<Name*> names;
-
-    json parsedBF;
-    Dictionary* dict;
 
 public:
     BerryFlavor(std::string name, std::string url);
@@ -119,11 +115,10 @@ public:
 
 class FlavorBerryMap {
 private:
-    int potency;
-    Berry* berry;
-
-    json parsedFBM;
+    json parsedJson;
     Dictionary* dict;
+
+    int potency;
 
 public:
     FlavorBerryMap(json flavorBerryMapJson);

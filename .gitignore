@@ -1,1 +1,9 @@
 Pokemon-API-Project
+.vscode
+.vs
+Debug
+x64
+Pokemon-API-Project.sln
+Pokemon-API-Project.vcxproj
+Pokemon-API-Project.vcxproj.filters
+Pokemon-API-Project.vcxproj.user

@@ -9,13 +9,12 @@ ContestType::ContestType(std::string name, std::string url) {
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedCT = req.retrieveJson("contest-type", name); //cool
+    parsedJson = req.retrieveJson("contest-type", name);
 
-    this->id = parsedCT["id"];
-    this->name = to_string(parsedCT["name"]);
-    //berryFlavor = NULL;
+    this->id = parsedJson["id"];
+    this->name = to_string(parsedJson["name"]);
 
-    for (auto& contestName : parsedCT["names"]) {
+    for (auto& contestName : parsedJson["names"]) {
         names.push_back(new ContestName(contestName));
     }
 
@@ -36,8 +35,8 @@ std::string ContestType::getName() {
 
 BerryFlavor ContestType::getBerryFlavor() {
     //search dict by passing in name
-    std::string bfName = parsedCT["berry_flavor"]["name"];
-    std::string bfUrl = parsedCT["berry_flavor"]["url"];
+    std::string bfName = parsedJson["berry_flavor"]["name"];
+    std::string bfUrl = parsedJson["berry_flavor"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("berry-flavor", bfName) == false) {
@@ -55,10 +54,10 @@ ContestName ContestType::getContestName(int index) {
 
 // ContestName
 ContestName::ContestName(json contestNameJson) {
-    parsedCN = contestNameJson;
-    this->name = to_string(parsedCN["name"]);
-    this->color = to_string(parsedCN["color"]);
-    language = NULL;
+    parsedJson = contestNameJson;
+    this->name = to_string(parsedJson["name"]);
+    this->color = to_string(parsedJson["color"]);
+
     dict = dict->getInstance();
 }
 
@@ -74,8 +73,8 @@ std::string ContestName::getColor() {
 
 Language ContestName::getLanguage() {
     //search dict by passing in name
-    std::string lName = parsedCN["language"]["name"];
-    std::string lUrl = parsedCN["language"]["url"];
+    std::string lName = parsedJson["language"]["name"];
+    std::string lUrl = parsedJson["language"]["url"];
 
     //if not found in dict
     if (dict->hasFoundKey("language", lName) == false) {
@@ -94,17 +93,17 @@ ContestEffect::ContestEffect(std::string name, std::string url) {
     NamedAPIResource::url  = url;
 
     Requests req;
-    parsedCE = req.retrieveJson("contest-effect", name);
+    parsedJson = req.retrieveJson("contest-effect", name);
 
-    this->id     = parsedCE["id"];
-    this->appeal = parsedCE["appeal"];
-    this->jam    = parsedCE["jam"];
+    this->id     = parsedJson["id"];
+    this->appeal = parsedJson["appeal"];
+    this->jam    = parsedJson["jam"];
 
-    for (auto& effectEntry : parsedCE["effect_entries"]) {
+    for (auto& effectEntry : parsedJson["effect_entries"]) {
         effectEntries.push_back(new Effect(effectEntry));
     }
 
-    for (auto& flavorTextEntry : parsedCE["flavor_text_entries"]) {
+    for (auto& flavorTextEntry : parsedJson["flavor_text_entries"]) {
         flavorTextEntries.push_back(new FlavorText(flavorTextEntry));
     }
 
@@ -143,12 +142,12 @@ SuperContestEffect::SuperContestEffect(std::string name, std::string url) {
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedSCE = req.retrieveJson("super-contest-effect", name);
+    parsedJson = req.retrieveJson("super-contest-effect", name);
 
-    this->id = parsedSCE["id"];
-    this->appeal = parsedSCE["appeal"];
+    this->id = parsedJson["id"];
+    this->appeal = parsedJson["appeal"];
 
-    for (auto& flavorTextEntry : parsedSCE["flavor_text_entries"]) {
+    for (auto& flavorTextEntry : parsedJson["flavor_text_entries"]) {
         flavorTextEntries.push_back(new FlavorText(flavorTextEntry));
     }
 

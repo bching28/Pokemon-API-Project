@@ -7,7 +7,6 @@
 
 #include <nlohmann/json.hpp>
 #include "PokeWrap.h"
-#include "Groups/Contests.h"
 
  // Constructor
 PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}
@@ -15,8 +14,6 @@ PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}
 // Destructor
 PokeWrap::~PokeWrap() {}
 
-//TODO::the HTTP requests will probably need to be moved out of PokeWrap
-// into the Requests class? (duplicate TODO in Contests.cpp)
 std::string PokeWrap::formatUrl(std::string endpoint, std::string name) {
 	return (baseUrl + endpoint + "/" + name);
 }

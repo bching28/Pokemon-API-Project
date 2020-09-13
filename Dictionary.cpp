@@ -8,11 +8,37 @@ Dictionary::Dictionary() {
 
 Dictionary::~Dictionary() {
     //TODO::delete every dictionary
-    std::unordered_map < std::string, BerryFlavor* >::iterator itr = berryFlavorDict.begin();
-    while (itr != berryFlavorDict.end()) {
-        delete itr->second;
-        itr++;
+    std::unordered_map <std::string, Berry* >::iterator itrB = berryDict.begin();
+    while (itrB != berryDict.end()) {
+        delete itrB->second;
+        itrB++;
     }
+    std::unordered_map <std::string, BerryFirmness* >::iterator itrBFirm = berryFirmnessDict.begin();
+    while (itrBFirm != berryFirmnessDict.end()) {
+        delete itrBFirm->second;
+        itrBFirm++;
+    }
+    std::unordered_map <std::string, BerryFlavor* >::iterator itrBFlavor = berryFlavorDict.begin();
+    while (itrBFlavor != berryFlavorDict.end()) {
+        delete itrBFlavor->second;
+        itrBFlavor++;
+    }
+    std::unordered_map <std::string, ContestType* >::iterator itrCT = contestTypeDict.begin();
+    while (itrCT != contestTypeDict.end()) {
+        delete itrCT->second;
+        itrCT++;
+    }
+    std::unordered_map <std::string, ContestEffect* >::iterator itrCE = contestEffectDict.begin();
+    while (itrCE != contestEffectDict.end()) {
+        delete itrCE->second;
+        itrCE++;
+    }
+    /*std::unordered_map <std::string, SuperContestEffect* >::iterator itrCT = superContestEffectDict.begin();
+    while (itrCT != contestTypeDict.end()) {
+        delete itrCT->second;
+        itrCT++;
+    }*/
+
 }
 
 Dictionary* Dictionary::getInstance() {
@@ -78,40 +104,40 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
     return true;
 }
 
-void Dictionary::setBerryDictEntry(std::string key, std::string bUrl) {
-    berryDict[key] = new Berry(key, bUrl);;
+void Dictionary::setBerryDictEntry(std::string key, std::string url) {
+    berryDict[key] = new Berry(key, url);;
 }
 
 Berry Dictionary::getBerryDictEntry(std::string key) {
     return *berryDict.at(key);
 }
 
-void Dictionary::setBerryFirmnessDictEntry(std::string key, std::string bUrl) {
-    berryFirmnessDict[key] = new BerryFirmness(key, bUrl);;
+void Dictionary::setBerryFirmnessDictEntry(std::string key, std::string url) {
+    berryFirmnessDict[key] = new BerryFirmness(key, url);;
 }
 
 BerryFirmness Dictionary::getBerryFirmnessDictEntry(std::string key) {
     return *berryFirmnessDict.at(key);
 }
 
-void Dictionary::setBerryFlavorDictEntry(std::string key, std::string bfUrl) {
-    berryFlavorDict[key] = new BerryFlavor(key, bfUrl);;
+void Dictionary::setBerryFlavorDictEntry(std::string key, std::string url) {
+    berryFlavorDict[key] = new BerryFlavor(key, url);;
 }
 
 BerryFlavor Dictionary::getBerryFlavorDictEntry(std::string key) {
     return *berryFlavorDict.at(key);
 }
 
-void Dictionary::setContestTypeDictEntry(std::string key, std::string ctUrl) {
-    contestTypeDict[key] = new ContestType(key, ctUrl);
+void Dictionary::setContestTypeDictEntry(std::string key, std::string url) {
+    contestTypeDict[key] = new ContestType(key, url);
 }
 
 ContestType Dictionary::getContestTypeDictEntry(std::string key) {
     return *contestTypeDict.at(key);
 }
 
-void Dictionary::setContestEffectDictEntry(std::string key, std::string ceUrl) {
-    contestEffectDict[key] = new ContestEffect(key, ceUrl);
+void Dictionary::setContestEffectDictEntry(std::string key, std::string url) {
+    contestEffectDict[key] = new ContestEffect(key, url);
 }
 
 ContestEffect Dictionary::getContestEffectDictEntry(std::string key) {
@@ -126,24 +152,24 @@ EncounterCondition Dictionary::getEncounterConditionDictEntry(std::string key) {
     return *encounterConditionDict.at(key);
 }
 
-void Dictionary::setItemDictEntry(std::string key, std::string iUrl) {
-    itemDict[key] = new Item(key, iUrl);
+void Dictionary::setItemDictEntry(std::string key, std::string url) {
+    itemDict[key] = new Item(key, url);
 }
 
 Item Dictionary::getItemDictEntry(std::string key) {
     return *itemDict.at(key);
 }
 
-void Dictionary::setItemFlingEffectDictEntry(std::string key, std::string ifeUrl) {
-    itemFlingEffectDict[key] = new ItemFlingEffect(key, ifeUrl);;
+void Dictionary::setItemFlingEffectDictEntry(std::string key, std::string url) {
+    itemFlingEffectDict[key] = new ItemFlingEffect(key, url);;
 }
 
 ItemFlingEffect* Dictionary::getItemFlingEffectDictEntry(std::string key) {
     return itemFlingEffectDict.at(key);
 }
 
-void Dictionary::setLanguageDictEntry(std::string key, std::string lUrl) {
-    languageDict[key] = new Language(key, lUrl);
+void Dictionary::setLanguageDictEntry(std::string key, std::string url) {
+    languageDict[key] = new Language(key, url);
 }
 
 Language Dictionary::getLanguageDictEntry(std::string key) {

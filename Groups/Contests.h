@@ -26,13 +26,12 @@ class Language;    // Utility.h
 
 class ContestType : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
-    //BerryFlavor* berryFlavor;
-    std::vector<ContestName*> names; // vector of ContestName names (which are the key for the dict)
-
-    json parsedCT;
-    Dictionary* dict;
+    std::vector<ContestName*> names;
 
 public:
     ContestType(std::string name, std::string url);
@@ -46,12 +45,11 @@ public:
 
 class ContestName {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     std::string name;
     std::string color;
-    Language* language;
-
-    json parsedCN;
-    Dictionary* dict;
 
 public:
     ContestName(json contestNameJson);
@@ -64,14 +62,14 @@ public:
 
 class ContestEffect : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     int appeal;
     int jam;
     std::vector<Effect*> effectEntries;
     std::vector<FlavorText*> flavorTextEntries;
-
-    json parsedCE;
-    Dictionary* dict;
 
 public:
     ContestEffect(std::string name, std::string url);
@@ -86,13 +84,13 @@ public:
 
 class SuperContestEffect : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     int appeal;
     std::vector<FlavorText*> flavorTextEntries;
     //std::vector<Move*> moves;
-
-    json parsedSCE;
-    Dictionary* dict;
 
 public:
     SuperContestEffect(std::string name, std::string url);
