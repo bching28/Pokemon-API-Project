@@ -5,7 +5,7 @@
 #include "Contests.h"
 #include "Items.h"
 #include "Resource.h"
-#include "Dictionary.h"
+#include "../Dictionary.h"
 //#include "Pokemon.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>

@@ -1,5 +1,5 @@
 #include "Encounters.h"
-#include "Requests.h"
+#include "../Requests.h"
 
 // Encounter Method
 // -------------------------------------------------------------------------

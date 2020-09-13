@@ -2,7 +2,7 @@
 #define UTILITY_H
 
 #include "Resource.h"
-#include "Dictionary.h"
+#include "../Dictionary.h"
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;

@@ -2,7 +2,7 @@
 #define ITEMS_H
 
 #include <iostream>
-#include "Dictionary.h"
+#include "../Dictionary.h"
 #include "Evolution.h"
 #include "Games.h"
 //#include "Pokemon.h"

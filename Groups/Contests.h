@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "Berries.h"
-#include "Dictionary.h"
+#include "../Dictionary.h"
 //#include "Moves.h"
 #include "Resource.h"
 #include "Utility.h"

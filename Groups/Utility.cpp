@@ -1,5 +1,5 @@
 #include "Utility.h"
-#include "Requests.h"
+#include "../Requests.h"
 
 Language::Language(std::string name, std::string url) {
     NamedAPIResource::name = name;

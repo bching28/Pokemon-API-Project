@@ -1,5 +1,5 @@
 #include "Contests.h"
-#include "Requests.h"
+#include "../Requests.h"
 
 // Contest Type
 // -------------------------------------------------------------------------

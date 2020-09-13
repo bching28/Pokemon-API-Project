@@ -2,7 +2,7 @@
 #define ENCOUNTERS_H
 
 #include <iostream>
-#include "Dictionary.h"
+#include "../Dictionary.h"
 #include "Resource.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
