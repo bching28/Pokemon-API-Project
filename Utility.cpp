@@ -75,3 +75,39 @@ Language Name::getLanguage() {
 
     return dict->getLanguageDictEntry(lName);
 }
+
+// Effect
+Effect::Effect(json effectJson) {
+    parsedE = effectJson;
+    effect = to_string(effectJson["effect"]);
+
+    dict = dict->getInstance();
+}
+Effect::~Effect() {
+
+}
+
+Language Effect::getLanguage() {
+    //search dict by passing in name
+    std::string lName = parsedE["language"]["name"];
+    std::string lUrl = parsedE["language"]["url"];
+
+    //if not found in dict
+    if (dict->hasFoundKey("language", lName) == false) {
+        // add to dictionary
+        dict->setLanguageDictEntry(lName, lUrl);
+    }
+
+    return dict->getLanguageDictEntry(lName);
+}
+
+// Flavor Text
+FlavorText::FlavorText(json flavorTextJson) {
+    parsedFT = flavorTextJson;
+    flavorText = to_string(flavorTextJson["flavor_text"]);
+
+    dict = dict->getInstance();
+}
+FlavorText::~FlavorText() {
+
+}

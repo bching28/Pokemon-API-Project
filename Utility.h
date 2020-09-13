@@ -48,10 +48,17 @@ public:
 class Effect {
 private:
     std::string effect;
-    Language* language;
+    //Language* language;
+
+    json parsedE;
+    Dictionary* dict;
+
 public:
-    Effect();
+    Effect(json effectJson);
     ~Effect();
+
+    std::string getEffect();
+    Language getLanguage();
 };
 
 class Encounter {
@@ -66,12 +73,20 @@ private:
 class FlavorText {
 private:
     std::string flavorText;
-    Language* language;
-    //Version version;
+    //Language* language;
+    //Version* version;
+
+    json parsedFT;
+    Dictionary* dict;
 
 public:
-    FlavorText();
+    FlavorText(json flavorTextJson);
     ~FlavorText();
+
+    // TODO Danny
+    /*std::string getFlavorText();
+    Language getLanguage();
+    Version getVersion();*/
 };
 
 class GenerationGameIndex {

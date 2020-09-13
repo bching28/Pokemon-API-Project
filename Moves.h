@@ -1,6 +1,7 @@
 #ifndef MOVES_H
 #define MOVES_H
 
+#include "Pokemon.h"
 #include "Resource.h"
 #include "Utility.h"
 
@@ -14,25 +15,51 @@ private:
     int priority;
     int power;
     //ContestComboSets contestCombos;
-    //ContestType contestType;
-    //ContentEffect contestEffect; / APIResource?
-    //MoveDamageClass damageClass;
-    //VerboseEffect effectEntries;
-    //AbilityEffectChange effectChanges;
-    //MoveFlavorText flavorTextEntries;
-    //Generation generation;
-    //MachineVersionDetail machines;
+    //ContestType contestType; // n-api
+    //ContestEffect contestEffect; //API Resource?
+    //MoveDamageClass damageClass; // n-api
+    //VerboseEffect effectEntries; // list
+    std::vector<VerboseEffect*> effectEntries;
+    //AbilityEffectChange effectChanges; // list
+    //MoveFlavorText flavorTextEntries; // list
+    //Generation generation; // n-api
+    //MachineVersionDetail machines; // list
     //MoveMetaData meta;
-    //Name names;
-    //PastMoveStatValues pastValues;
-    //MoveStatChange statChanges;
-    //SuperContestEffect superContestEffect;
-    //MoveTarget target;
-    //Type type;
+    //Name names; // list
+    //PastMoveStatValues pastValues; // list
+    //MoveStatChange statChanges; // list
+    //SuperContestEffect superContestEffect; //API Resource
+    //MoveTarget target; // n-api
+    //Type type; // n-api
+
+    json parsedM;
+    Dictionary* dict;
 
 public:
-    Move();
+    Move(std::string name, std::string url);
     ~Move();
+
+    //int getId();
+    //std::string getName();
+    //int getAccuracy();
+    //int getEffectChance();
+    //int getPp();
+    //int getPriority();
+    //int getPower();
+
+    //ContestComboSets getContestComboSets();
+    //ContestType getContestType();
+    //MoveDamageClass getMoveDamageClass();
+    //VerboseEffect getVerboseEffect();
+    //AbilityEffectChange getAbilityEffectChange();
+    //MoveFlavorText getMoveFlavorText();
+    //Generation getGeneration();
+    //MachineVersionDetail getMachineVersionDetail();
+    //MoveMetaData getMoveMetaData();
+    //Name getName();
+    //PastMoveStatValues getPastMoveStatValues();
+    //MoveStatChange getMoveStatChange();
+
 };
 
 class ContestComboSets {
@@ -82,7 +109,7 @@ private:
 public:
     MoveMetaData();
     ~MoveMetaData();
-}
+};
 
 class MoveStatChange {
 private:

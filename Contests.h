@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include "Berries.h"
+#include "Dictionary.h"
 //#include "Moves.h"
 #include "Resource.h"
-#include "Dictionary.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
 
@@ -22,20 +22,19 @@ class BerryFlavor; // Berries.h
 class Effect;      // Utility.h
 class FlavorText;  // Utility.h
 class Language;    // Utility.h
-//class Move;        // Moves.h
+class Move;        // Moves.h
 
 class ContestType : public NamedAPIResource {
 private:
     int id;
     std::string name;
-    BerryFlavor* berryFlavor;
+    //BerryFlavor* berryFlavor;
     std::vector<ContestName*> names; // vector of ContestName names (which are the key for the dict)
 
     json parsedCT;
     Dictionary* dict;
 
 public:
-    //ContestType(std::string contestTypeName, bool isFirstCall);
     ContestType(std::string name, std::string url);
     ~ContestType();
 
@@ -63,29 +62,46 @@ public:
     Language getLanguage();
 };
 
-class ContestEffect {
+class ContestEffect : public NamedAPIResource {
 private:
     int id;
     int appeal;
     int jam;
-    Effect* effectEntries;
-    FlavorText* flavorTextEntries;
+    std::vector<Effect*> effectEntries;
+    std::vector<FlavorText*> flavorTextEntries;
+
+    json parsedCE;
+    Dictionary* dict;
 
 public:
-    ContestEffect();
+    ContestEffect(std::string name, std::string url);
     ~ContestEffect();
+
+    int getId();
+    int getAppeal();
+    int getJam();
+    Effect getEffect(int index);
+    FlavorText getFlavorText(int index);
 };
 
-class SuperContestEffect {
+class SuperContestEffect : public NamedAPIResource {
 private:
     int id;
     int appeal;
-    FlavorText* flavorTextEntries;
-    //Move moves; // Moves.h
+    std::vector<FlavorText*> flavorTextEntries;
+    //std::vector<Move*> moves;
+
+    json parsedSCE;
+    Dictionary* dict;
 
 public:
-    SuperContestEffect();
+    SuperContestEffect(std::string name, std::string url);
     ~SuperContestEffect();
+
+    int getId();
+    int getAppeal();
+    FlavorText getFlavorText(int index);
+    Move getMove(int index);
 };
 
 #endif // CONTESTS_H

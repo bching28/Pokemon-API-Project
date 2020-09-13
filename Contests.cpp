@@ -1,6 +1,9 @@
 #include "Contests.h"
 #include "Requests.h"
 
+// Contest Type
+// -------------------------------------------------------------------------
+// Constructor
 ContestType::ContestType(std::string name, std::string url) {
     NamedAPIResource::name = name;
     NamedAPIResource::url = url;
@@ -8,9 +11,9 @@ ContestType::ContestType(std::string name, std::string url) {
     Requests req;
     parsedCT = req.retrieveJson("contest-type", name); //cool
 
-    id = parsedCT["id"];
+    this->id = parsedCT["id"];
     this->name = to_string(parsedCT["name"]);
-    berryFlavor = NULL;
+    //berryFlavor = NULL;
 
     for (auto& contestName : parsedCT["names"]) {
         names.push_back(new ContestName(contestName));
@@ -53,8 +56,8 @@ ContestName ContestType::getContestName(int index) {
 // ContestName
 ContestName::ContestName(json contestNameJson) {
     parsedCN = contestNameJson;
-    name = to_string(parsedCN["name"]);
-    color = to_string(parsedCN["color"]);
+    this->name = to_string(parsedCN["name"]);
+    this->color = to_string(parsedCN["color"]);
     language = NULL;
     dict = dict->getInstance();
 }
@@ -82,3 +85,96 @@ Language ContestName::getLanguage() {
 
     return dict->getLanguageDictEntry(lName);
 }
+
+// Contest Effect
+// -------------------------------------------------------------------------
+// Constructor
+ContestEffect::ContestEffect(std::string name, std::string url) {
+    NamedAPIResource::name = name;
+    NamedAPIResource::url  = url;
+
+    Requests req;
+    parsedCE = req.retrieveJson("contest-effect", name);
+
+    this->id     = parsedCE["id"];
+    this->appeal = parsedCE["appeal"];
+    this->jam    = parsedCE["jam"];
+
+    for (auto& effectEntry : parsedCE["effect_entries"]) {
+        effectEntries.push_back(new Effect(effectEntry));
+    }
+
+    for (auto& flavorTextEntry : parsedCE["flavor_text_entries"]) {
+        flavorTextEntries.push_back(new FlavorText(flavorTextEntry));
+    }
+
+    dict = dict->getInstance();
+}
+
+ContestEffect::~ContestEffect() {
+
+}
+
+int ContestEffect::getId() {
+    return this->id;
+}
+
+int ContestEffect::getAppeal() {
+    return this->appeal;
+}
+
+int ContestEffect::getJam() {
+    return this->jam;
+}
+
+Effect ContestEffect::getEffect(int index) {
+    return *(this->effectEntries.at(index));
+}
+
+FlavorText ContestEffect::getFlavorText(int index) {
+    return *(this->flavorTextEntries.at(index));
+}
+
+// Super Contest Effect
+// -------------------------------------------------------------------------
+// Constructor
+SuperContestEffect::SuperContestEffect(std::string name, std::string url) {
+    NamedAPIResource::name = name;
+    NamedAPIResource::url = url;
+
+    Requests req;
+    parsedSCE = req.retrieveJson("super-contest-effect", name);
+
+    this->id = parsedSCE["id"];
+    this->appeal = parsedSCE["appeal"];
+
+    for (auto& flavorTextEntry : parsedSCE["flavor_text_entries"]) {
+        flavorTextEntries.push_back(new FlavorText(flavorTextEntry));
+    }
+
+    /*for (auto& move : parsedSCE["moves"]) {
+        moves.push_back(new Move(move["name"], move["url"]));
+    }*/
+
+    dict = dict->getInstance();
+}
+
+SuperContestEffect::~SuperContestEffect() {
+
+}
+
+int SuperContestEffect::getId() {
+    return this->id;
+}
+
+int SuperContestEffect::getAppeal() {
+    return this->appeal;
+}
+
+FlavorText SuperContestEffect::getFlavorText(int index) {
+    return *(this->flavorTextEntries.at(index));
+}
+
+//Move SuperContestEffect::getMove(int index) {
+//    return *(this->moves.at(index));
+//}
