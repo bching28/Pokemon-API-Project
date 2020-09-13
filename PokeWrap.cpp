@@ -7,7 +7,7 @@
 
 #include <nlohmann/json.hpp>
 #include "PokeWrap.h"
-#include "Contests.h"
+#include "Groups/Contests.h"
 
  // Constructor
 PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}

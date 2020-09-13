@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <unordered_map>
-#include "Berries.h"
-#include "Contests.h"
-#include "Items.h"
-#include "Utility.h"
+#include "Groups/Berries.h"
+#include "Groups/Contests.h"
+#include "Groups/Items.h"
+#include "Groups/Utility.h"
 
 class Berry;
 class BerryFirmness;

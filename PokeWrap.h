@@ -10,8 +10,8 @@
 
 #include <iostream>
 #include "Requests.h"
-#include "Contests.h"
-#include "Berries.h"
+#include "Groups/Contests.h"
+#include "Groups/Berries.h"
 
 class PokeWrap {
 private:
