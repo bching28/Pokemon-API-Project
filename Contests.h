@@ -22,7 +22,7 @@ class BerryFlavor; // Berries.h
 class Effect;      // Utility.h
 class FlavorText;  // Utility.h
 class Language;    // Utility.h
-class Move;        // Moves.h
+//class Move;        // Moves.h
 
 class ContestType : public NamedAPIResource {
 private:
@@ -101,7 +101,7 @@ public:
     int getId();
     int getAppeal();
     FlavorText getFlavorText(int index);
-    Move getMove(int index);
+    //Move getMove(int index);
 };
 
 #endif // CONTESTS_H

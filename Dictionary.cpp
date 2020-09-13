@@ -110,6 +110,14 @@ ContestType Dictionary::getContestTypeDictEntry(std::string key) {
     return *contestTypeDict.at(key);
 }
 
+void Dictionary::setContestEffectDictEntry(std::string key, std::string ceUrl) {
+    contestEffectDict[key] = new ContestEffect(key, ceUrl);
+}
+
+ContestEffect Dictionary::getContestEffectDictEntry(std::string key) {
+    return *contestEffectDict.at(key);
+}
+
 void Dictionary::setEncounterConditionDictEntry(std::string key, std::string url) {
     encounterConditionDict[key] = new EncounterCondition(key, url);
 }
