@@ -65,7 +65,7 @@ public:
     EncounterCondition getEncounterConditionDictEntry(std::string key);
 
     void setItemDictEntry(std::string key, std::string url);
-    Item getItemDictEntry(std::string key);
+    Item* getItemDictEntry(std::string key);
 
     void setItemFlingEffectDictEntry(std::string key, std::string url);
     ItemFlingEffect* getItemFlingEffectDictEntry(std::string key);
