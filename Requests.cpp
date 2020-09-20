@@ -17,12 +17,14 @@ Requests::Requests() : curl(nullptr),
 // Destructor
 Requests::~Requests() {}
 
+std::string Requests::formatUrl(std::string endpoint, int id) {
+    return (Requests::baseUrl + endpoint + "/" + std::to_string(id));
+}
+
 std::string Requests::formatUrl(std::string endpoint, std::string name) {
     return (Requests::baseUrl + endpoint + "/" + name);
 }
 
-//TODO::the HTTP requests will probably need to be moved out of PokeWrap
-// into the Requests class?
 std::string Requests::retrieveHTTPResponse(std::string url) {
     Requests req;
     int curlReturnStatus = 0;
@@ -33,8 +35,18 @@ std::string Requests::retrieveHTTPResponse(std::string url) {
     return req.getResponse();
 }
 
-json Requests::retrieveJson(std::string endpointType, std::string endpointValue) {
-    std::string formattedUrl = formatUrl(endpointType, endpointValue);
+json Requests::retrieveJson(std::string endpointType, int endpointId) {
+    std::string formattedUrl = formatUrl(endpointType, endpointId);
+
+    std::string jsonResponse = retrieveHTTPResponse(formattedUrl);
+
+    json parsedResp = json::parse(jsonResponse);
+
+    return parsedResp;
+}
+
+json Requests::retrieveJson(std::string endpointType, std::string endpointName) {
+    std::string formattedUrl = formatUrl(endpointType, endpointName);
 
     std::string jsonResponse = retrieveHTTPResponse(formattedUrl);
 

@@ -14,10 +14,6 @@ PokeWrap::PokeWrap() : baseUrl("https://pokeapi.co/api/v2/") {}
 // Destructor
 PokeWrap::~PokeWrap() {}
 
-std::string PokeWrap::formatUrl(std::string endpoint, std::string name) {
-	return (baseUrl + endpoint + "/" + name);
-}
-
 std::string PokeWrap::retrieveHTTPResponse(std::string url) {
 	Requests req;
 	int curlReturnStatus = 0;
@@ -31,7 +27,7 @@ std::string PokeWrap::retrieveHTTPResponse(std::string url) {
 // Berries
 
 Berry PokeWrap::berry(std::string berryName) {
-	std::string formattedUrl = formatUrl("berry", berryName);
+	std::string formattedUrl = req.formatUrl("berry", berryName);
 
 	Berry berry(berryName, formattedUrl);
 
@@ -39,7 +35,7 @@ Berry PokeWrap::berry(std::string berryName) {
 }
 
 BerryFirmness PokeWrap::berryFirmness(std::string berryFirmnessName) {
-	std::string formattedUrl = formatUrl("berry-firmness", berryFirmnessName);
+	std::string formattedUrl = req.formatUrl("berry-firmness", berryFirmnessName);
 
 	BerryFirmness berryFirmness(berryFirmnessName, formattedUrl);
 
@@ -47,7 +43,7 @@ BerryFirmness PokeWrap::berryFirmness(std::string berryFirmnessName) {
 }
 
 BerryFlavor PokeWrap::berryFlavor(std::string berryFlavorName) {
-	std::string formattedUrl = formatUrl("berry-flavor", berryFlavorName);
+	std::string formattedUrl = req.formatUrl("berry-flavor", berryFlavorName);
 
 	BerryFlavor berryFlavor(berryFlavorName, formattedUrl); // 1 == spicy
 
@@ -66,13 +62,13 @@ ContestType PokeWrap::contestType(std::string contestTypeName) {
 }
 
 std::string PokeWrap::contestEffect(std::string contestEffectName) {
-	std::string formattedUrl = formatUrl("contest-effect", contestEffectName);
+	std::string formattedUrl = req.formatUrl("contest-effect", contestEffectName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::superContestEffect(std::string superContestEffectName) {
-	std::string formattedUrl = formatUrl("super-contest-effect", superContestEffectName);
+	std::string formattedUrl = req.formatUrl("super-contest-effect", superContestEffectName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -80,7 +76,7 @@ std::string PokeWrap::superContestEffect(std::string superContestEffectName) {
 // Encounters
 
 EncounterMethod PokeWrap::encounterMethod(std::string encounterMethodName) {
-	std::string formattedUrl = formatUrl("encounter-method", encounterMethodName);
+	std::string formattedUrl = req.formatUrl("encounter-method", encounterMethodName);
 
 	EncounterMethod encounterMethod(encounterMethodName, formattedUrl);
 
@@ -88,7 +84,7 @@ EncounterMethod PokeWrap::encounterMethod(std::string encounterMethodName) {
 }
 
 EncounterCondition PokeWrap::encounterCondition(std::string encounterConditionName) {
-	std::string formattedUrl = formatUrl("encounter-condition", encounterConditionName);
+	std::string formattedUrl = req.formatUrl("encounter-condition", encounterConditionName);
 
 	EncounterCondition encounterCondition(encounterConditionName, formattedUrl);
 
@@ -96,7 +92,7 @@ EncounterCondition PokeWrap::encounterCondition(std::string encounterConditionNa
 }
 
 EncounterConditionValue PokeWrap::encounterConditionValue(std::string encounterConditionValueName) {
-	std::string formattedUrl = formatUrl("encounter-condition-value", encounterConditionValueName);
+	std::string formattedUrl = req.formatUrl("encounter-condition-value", encounterConditionValueName);
 
 	EncounterConditionValue encounterConditionValue(encounterConditionValueName, formattedUrl);
 
@@ -105,14 +101,16 @@ EncounterConditionValue PokeWrap::encounterConditionValue(std::string encounterC
 
 // Evolution
 
-std::string PokeWrap::evolutionChain(std::string evolutionChainName) {
-	std::string formattedUrl = formatUrl("evolution-chain", evolutionChainName);
+EvolutionChain PokeWrap::evolutionChain(int evolutionChainId) {
+	std::string formattedUrl = req.formatUrl("evolution-chain", evolutionChainId);
 
-	return retrieveHTTPResponse(formattedUrl);
+	EvolutionChain evolutionChain(evolutionChainId, formattedUrl);
+
+	return evolutionChain;
 }
 
 std::string PokeWrap::evolutionTrigger(std::string evolutionTriggerName) {
-	std::string formattedUrl = formatUrl("evolution-trigger", evolutionTriggerName);
+	std::string formattedUrl = req.formatUrl("evolution-trigger", evolutionTriggerName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -120,25 +118,25 @@ std::string PokeWrap::evolutionTrigger(std::string evolutionTriggerName) {
 // Games
 
 std::string PokeWrap::generation(std::string generationName) {
-	std::string formattedUrl = formatUrl("generation", generationName);
+	std::string formattedUrl = req.formatUrl("generation", generationName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokedex(std::string pokedexName) {
-	std::string formattedUrl = formatUrl("pokedex", pokedexName);
+	std::string formattedUrl = req.formatUrl("pokedex", pokedexName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::version(std::string versionName) {
-	std::string formattedUrl = formatUrl("version", versionName);
+	std::string formattedUrl = req.formatUrl("version", versionName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::versionGroup(std::string versionGroupName) {
-	std::string formattedUrl = formatUrl("version-group", versionGroupName);
+	std::string formattedUrl = req.formatUrl("version-group", versionGroupName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -146,7 +144,7 @@ std::string PokeWrap::versionGroup(std::string versionGroupName) {
 // Items
 
 Item PokeWrap::item(std::string itemName) {
-	std::string formattedUrl = formatUrl("item", itemName);
+	std::string formattedUrl = req.formatUrl("item", itemName);
 
 	Item item(itemName, formattedUrl);
 
@@ -154,19 +152,19 @@ Item PokeWrap::item(std::string itemName) {
 }
 
 std::string PokeWrap::itemAttribute(std::string itemAttributeName) {
-	std::string formattedUrl = formatUrl("item-attribute", itemAttributeName);
+	std::string formattedUrl = req.formatUrl("item-attribute", itemAttributeName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::itemCategory(std::string itemCategoryName) {
-	std::string formattedUrl = formatUrl("item-category", itemCategoryName);
+	std::string formattedUrl = req.formatUrl("item-category", itemCategoryName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 ItemFlingEffect PokeWrap::itemFlingEffect(std::string itemFlingEffectName) {
-	std::string formattedUrl = formatUrl("item-fling-effect", itemFlingEffectName);
+	std::string formattedUrl = req.formatUrl("item-fling-effect", itemFlingEffectName);
 
 	ItemFlingEffect itemFlingEffect(itemFlingEffectName, formattedUrl);
 
@@ -174,7 +172,7 @@ ItemFlingEffect PokeWrap::itemFlingEffect(std::string itemFlingEffectName) {
 }
 
 std::string PokeWrap::itemPocket(std::string itemPocketName) {
-	std::string formattedUrl = formatUrl("item-pocket", itemPocketName);
+	std::string formattedUrl = req.formatUrl("item-pocket", itemPocketName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -182,25 +180,25 @@ std::string PokeWrap::itemPocket(std::string itemPocketName) {
 // Locations
 
 std::string PokeWrap::location(std::string locationName) {
-	std::string formattedUrl = formatUrl("location", locationName);
+	std::string formattedUrl = req.formatUrl("location", locationName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::locationArea(std::string locationAreaName) {
-	std::string formattedUrl = formatUrl("location-area", locationAreaName);
+	std::string formattedUrl = req.formatUrl("location-area", locationAreaName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::palParkArea(std::string palParkAreaName) {
-	std::string formattedUrl = formatUrl("pal-park-area", palParkAreaName);
+	std::string formattedUrl = req.formatUrl("pal-park-area", palParkAreaName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::region(std::string regionName) {
-	std::string formattedUrl = formatUrl("region", regionName);
+	std::string formattedUrl = req.formatUrl("region", regionName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -208,7 +206,7 @@ std::string PokeWrap::region(std::string regionName) {
 // Machines
 
 std::string PokeWrap::machine(std::string machineName) {
-	std::string formattedUrl = formatUrl("machine", machineName);
+	std::string formattedUrl = req.formatUrl("machine", machineName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -216,43 +214,43 @@ std::string PokeWrap::machine(std::string machineName) {
 // Moves
 
 std::string PokeWrap::move(std::string moveName) {
-	std::string formattedUrl = formatUrl("move", moveName);
+	std::string formattedUrl = req.formatUrl("move", moveName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::moveAilment(std::string moveAilmentName) {
-	std::string formattedUrl = formatUrl("move-ailment", moveAilmentName);
+	std::string formattedUrl = req.formatUrl("move-ailment", moveAilmentName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::moveBattleStyle(std::string moveBattleStyleName) {
-	std::string formattedUrl = formatUrl("move-battle-style", moveBattleStyleName);
+	std::string formattedUrl = req.formatUrl("move-battle-style", moveBattleStyleName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::moveCategory(std::string moveCategoryName) {
-	std::string formattedUrl = formatUrl("move-category", moveCategoryName);
+	std::string formattedUrl = req.formatUrl("move-category", moveCategoryName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::moveDamageClass(std::string moveDamageClassName) {
-	std::string formattedUrl = formatUrl("move-damage-class", moveDamageClassName);
+	std::string formattedUrl = req.formatUrl("move-damage-class", moveDamageClassName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::moveLearnMethod(std::string moveLearnMethodName) {
-	std::string formattedUrl = formatUrl("move-learn-method", moveLearnMethodName);
+	std::string formattedUrl = req.formatUrl("move-learn-method", moveLearnMethodName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::moveTarget(std::string moveTargetName) {
-	std::string formattedUrl = formatUrl("move-target", moveTargetName);
+	std::string formattedUrl = req.formatUrl("move-target", moveTargetName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -260,91 +258,91 @@ std::string PokeWrap::moveTarget(std::string moveTargetName) {
 // Pokemon
 
 std::string PokeWrap::ability(std::string abilityName) {
-	std::string formattedUrl = formatUrl("ability", abilityName);
+	std::string formattedUrl = req.formatUrl("ability", abilityName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::characteristic(std::string characteristicName) {
-	std::string formattedUrl = formatUrl("characteristic", characteristicName);
+	std::string formattedUrl = req.formatUrl("characteristic", characteristicName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::eggGroup(std::string eggGroupName) {
-	std::string formattedUrl = formatUrl("egg-group", eggGroupName);
+	std::string formattedUrl = req.formatUrl("egg-group", eggGroupName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::gender(std::string genderName) {
-	std::string formattedUrl = formatUrl("gender", genderName);
+	std::string formattedUrl = req.formatUrl("gender", genderName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::growthRate(std::string growthRateName) {
-	std::string formattedUrl = formatUrl("growth-rate", growthRateName);
+	std::string formattedUrl = req.formatUrl("growth-rate", growthRateName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::nature(std::string natureName) {
-	std::string formattedUrl = formatUrl("nature", natureName);
+	std::string formattedUrl = req.formatUrl("nature", natureName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokeathlonStat(std::string pokeathlonStatName) {
-	std::string formattedUrl = formatUrl("pokeathlon-stat", pokeathlonStatName);
+	std::string formattedUrl = req.formatUrl("pokeathlon-stat", pokeathlonStatName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokemon(std::string pokemonName) {
-	std::string formattedUrl = formatUrl("pokemon", pokemonName);
+	std::string formattedUrl = req.formatUrl("pokemon", pokemonName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokemonColor(std::string pokemonColorName) {
-	std::string formattedUrl = formatUrl("pokemon-color", pokemonColorName);
+	std::string formattedUrl = req.formatUrl("pokemon-color", pokemonColorName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokemonForm(std::string pokemonFormName) {
-	std::string formattedUrl = formatUrl("pokemon-form", pokemonFormName);
+	std::string formattedUrl = req.formatUrl("pokemon-form", pokemonFormName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokemonHabitat(std::string pokemonHabitatName) {
-	std::string formattedUrl = formatUrl("pokemon-habitat", pokemonHabitatName);
+	std::string formattedUrl = req.formatUrl("pokemon-habitat", pokemonHabitatName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokemonShape(std::string pokemonShapeName) {
-	std::string formattedUrl = formatUrl("pokemon-shape", pokemonShapeName);
+	std::string formattedUrl = req.formatUrl("pokemon-shape", pokemonShapeName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::pokemonSpecies(std::string pokemonSpeciesName) {
-	std::string formattedUrl = formatUrl("pokemon-species", pokemonSpeciesName);
+	std::string formattedUrl = req.formatUrl("pokemon-species", pokemonSpeciesName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::stat(std::string statName) {
-	std::string formattedUrl = formatUrl("stat", statName);
+	std::string formattedUrl = req.formatUrl("stat", statName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
 
 std::string PokeWrap::type(std::string typeName) {
-	std::string formattedUrl = formatUrl("type", typeName);
+	std::string formattedUrl = req.formatUrl("type", typeName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
@@ -352,7 +350,7 @@ std::string PokeWrap::type(std::string typeName) {
 // Languages
 
 std::string PokeWrap::language(std::string languageName) {
-	std::string formattedUrl = formatUrl("language", languageName);
+	std::string formattedUrl = req.formatUrl("language", languageName);
 
 	return retrieveHTTPResponse(formattedUrl);
 }
