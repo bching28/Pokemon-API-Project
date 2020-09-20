@@ -54,7 +54,7 @@ public:
     int getSoilDryness();
     BerryFirmness getFirmness();
     BerryFlavorMap getFlavors(int index);
-    Item getItem();
+    Item* getItem();
 };
 
 class BerryFlavorMap {

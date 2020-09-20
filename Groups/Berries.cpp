@@ -81,7 +81,7 @@ BerryFlavorMap Berry::getFlavors(int index) {
     return *(this->flavors.at(index));
 }
 
-Item Berry::getItem() {
+Item* Berry::getItem() {
     //search dict by passing in name
     std::string iName = parsedJson["item"]["name"];
     std::string iUrl = parsedJson["item"]["url"];
