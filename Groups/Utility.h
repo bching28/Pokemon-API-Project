@@ -72,21 +72,20 @@ private:
 
 class FlavorText {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     std::string flavorText;
     //Language* language;
     //Version* version;
-
-    json parsedFT;
-    Dictionary* dict;
 
 public:
     FlavorText(json flavorTextJson);
     ~FlavorText();
 
-    // TODO Danny
-    /*std::string getFlavorText();
+    std::string getFlavorText();
     Language getLanguage();
-    Version getVersion();*/
+    //Version getVersion();
 };
 
 class GenerationGameIndex {

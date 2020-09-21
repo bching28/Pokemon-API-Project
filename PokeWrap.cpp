@@ -61,10 +61,13 @@ ContestType PokeWrap::contestType(std::string contestTypeName) {
 	return contestType;
 }
 
-std::string PokeWrap::contestEffect(std::string contestEffectName) {
-	std::string formattedUrl = req.formatUrl("contest-effect", contestEffectName);
+ContestEffect PokeWrap::contestEffect(int contestEffectId) {
 
-	return retrieveHTTPResponse(formattedUrl);
+	std::string formattedUrl = req.formatUrl("contest-effect", contestEffectId);
+
+	ContestEffect contestEffect(contestEffectId, formattedUrl);
+
+	return contestEffect;
 }
 
 std::string PokeWrap::superContestEffect(std::string superContestEffectName) {

@@ -87,6 +87,10 @@ Effect::~Effect() {
 
 }
 
+std::string Effect::getEffect() {
+    return this->effect;
+}
+
 Language Effect::getLanguage() {
     //search dict by passing in name
     std::string lName = parsedE["language"]["name"];
@@ -103,7 +107,7 @@ Language Effect::getLanguage() {
 
 // Flavor Text
 FlavorText::FlavorText(json flavorTextJson) {
-    parsedFT = flavorTextJson;
+    parsedJson = flavorTextJson;
     flavorText = to_string(flavorTextJson["flavor_text"]);
 
     dict = dict->getInstance();
@@ -111,3 +115,35 @@ FlavorText::FlavorText(json flavorTextJson) {
 FlavorText::~FlavorText() {
 
 }
+
+std::string FlavorText::getFlavorText() {
+    return this->flavorText;
+}
+
+Language FlavorText::getLanguage() {
+    //search dict by passing in name
+    std::string lName = parsedJson["language"]["name"];
+    std::string lUrl = parsedJson["language"]["url"];
+
+    //if not found in dict
+    if (dict->hasFoundKey("language", lName) == false) {
+        // add to dictionary
+        dict->setLanguageDictEntry(lName, lUrl);
+    }
+
+    return dict->getLanguageDictEntry(lName);
+}
+
+//Version FlavorText::getVersion() {
+//    //search dict by passing in name
+//    std::string lName = parsedJson["version"]["name"];
+//    std::string lUrl = parsedJson["version"]["url"];
+//
+//    //if not found in dict
+//    if (dict->hasFoundKey("version", lName) == false) {
+//        // add to dictionary
+//        dict->setVersionDictEntry(lName, lUrl);
+//    }
+//
+//    return dict->getVersionDictEntry(lName);
+//}

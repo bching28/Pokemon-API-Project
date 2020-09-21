@@ -9,15 +9,17 @@ Move::Move(std::string name, std::string url) {
     NamedAPIResource::url = url;
 
     Requests req;
-    parsedM = req.retrieveJson("move", name);
+    parsedJson = req.retrieveJson("move", name);
 
-    id = parsedM["id"];
-    name = to_string(parsedM["name"]);
-    accuracy = parsedM["accuracy"];
-    effectChance = parsedM["effect_chance"];
-    pp = parsedM["pp"];
-    priority = parsedM["priority"];
-    power = parsedM["power"];
+    dict = dict->getInstance();
+
+    id = parsedJson["id"];
+    name = to_string(parsedJson["name"]);
+    accuracy = parsedJson["accuracy"];
+    effectChance = parsedJson["effect_chance"];
+    pp = parsedJson["pp"];
+    priority = parsedJson["priority"];
+    power = parsedJson["power"];
 
     /*for (auto& flavorTextEntry : parsedM["flavor_text_entries"]) {
         flavorTextEntries.push_back(new FlavorText(flavorTextEntry));
@@ -26,8 +28,6 @@ Move::Move(std::string name, std::string url) {
     for (auto& move : parsedM["moves"]) {
         moves.push_back(new Move(move["name"], move["url"]));
     }*/
-
-    dict = dict->getInstance();
 }
 
 Move::~Move() {

@@ -1,12 +1,22 @@
 #ifndef MOVES_H
 #define MOVES_H
 
+#include "../Dictionary.h"
 #include "Pokemon.h"
 #include "Resource.h"
 #include "Utility.h"
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+// forward declarations
+class Dictionary;
 
 class Move : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     int accuracy;
@@ -19,7 +29,7 @@ private:
     //ContestEffect contestEffect; //API Resource?
     //MoveDamageClass damageClass; // n-api
     //VerboseEffect effectEntries; // list
-    std::vector<VerboseEffect*> effectEntries;
+    //std::vector<VerboseEffect*> effectEntries; // list
     //AbilityEffectChange effectChanges; // list
     //MoveFlavorText flavorTextEntries; // list
     //Generation generation; // n-api
@@ -31,9 +41,6 @@ private:
     //SuperContestEffect superContestEffect; //API Resource
     //MoveTarget target; // n-api
     //Type type; // n-api
-
-    json parsedM;
-    Dictionary* dict;
 
 public:
     Move(std::string name, std::string url);

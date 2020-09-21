@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Berries.h"
 #include "../Dictionary.h"
-//#include "Moves.h"
+#include "Moves.h"
 #include "Resource.h"
 #include "Utility.h"
 #include <nlohmann/json.hpp>
@@ -22,7 +22,7 @@ class BerryFlavor; // Berries.h
 class Effect;      // Utility.h
 class FlavorText;  // Utility.h
 class Language;    // Utility.h
-//class Move;        // Moves.h
+class Move;        // Moves.h
 
 class ContestType : public NamedAPIResource {
 private:
@@ -60,7 +60,7 @@ public:
     Language getLanguage();
 };
 
-class ContestEffect : public NamedAPIResource {
+class ContestEffect : public APIResource {
 private:
     json parsedJson;
     Dictionary* dict;
@@ -72,7 +72,7 @@ private:
     std::vector<FlavorText*> flavorTextEntries;
 
 public:
-    ContestEffect(std::string name, std::string url);
+    ContestEffect(int id, std::string url);
     ~ContestEffect();
 
     int getId();
@@ -90,7 +90,7 @@ private:
     int id;
     int appeal;
     std::vector<FlavorText*> flavorTextEntries;
-    //std::vector<Move*> moves;
+    std::vector<Move*> moves;
 
 public:
     SuperContestEffect(std::string name, std::string url);
@@ -99,7 +99,7 @@ public:
     int getId();
     int getAppeal();
     FlavorText getFlavorText(int index);
-    //Move getMove(int index);
+    Move getMove(int index);
 };
 
 #endif // CONTESTS_H

@@ -35,6 +35,8 @@ int main() {
     std::string testPokemonResponse = pw.pokemon(pokemonName);
     Berry testBerryResponse = pw.berry(berryName);
     ContestType testContestResponse = pw.contestType("cool");
+    ContestEffect testContestEffectResponse = pw.contestEffect(1);
+    //ContestType testContestResponse = pw.contestType("cool");
     Item testItemResponse = pw.item("master-ball");
     BerryFlavor testBerryFlavorResponse = pw.berryFlavor("spicy");
     BerryFirmness testBerryFirmnessResponse = pw.berryFirmness("very-soft");
@@ -69,6 +71,26 @@ int main() {
 
     std::cout << "BF->CT: " << std::endl << testContestResponse.getBerryFlavor().getContestType().getName() << std::endl;
     std::cout << "BF->CT->BF: " << std::endl << testContestResponse.getBerryFlavor().getContestType().getBerryFlavor().getName() << std::endl;
+
+    std::cout << std::endl << "------------------------------------------------------------" << std::endl << "Contest Effect" << std::endl;
+    // id, appeal, jam
+    std::cout << "Contest Effect Id: " << std::endl << testContestEffectResponse.getId() << std::endl;
+
+    std::cout << "Contest Effect Appeal: " << std::endl << testContestEffectResponse.getAppeal() << std::endl;
+
+    std::cout << "Contest Effect Jam: " << std::endl << testContestEffectResponse.getJam() << std::endl;
+
+    std::cout << "Contest Effect Response for Effect.effect: " << std::endl << testContestEffectResponse.getEffect(0).getEffect() << std::endl;
+    std::cout << "Contest Effect Response for Effect->Language.id: " << std::endl << testContestEffectResponse.getEffect(0).getLanguage().getId() << std::endl;
+    std::cout << "Contest Effect Response for Effect->Language.name: " << std::endl << testContestEffectResponse.getEffect(0).getLanguage().getName() << std::endl;
+
+    std::cout << "Contest Effect Response for FlavorText.flavor_text: " << std::endl << testContestEffectResponse.getFlavorText(0).getFlavorText() << std::endl;
+    std::cout << "Contest Effect Response for FlavorText->Language.id: " << std::endl << testContestEffectResponse.getFlavorText(0).getLanguage().getId() << std::endl;
+    std::cout << "Contest Effect Response for FlavorText->Language.name: " << std::endl << testContestEffectResponse.getFlavorText(0).getLanguage().getName() << std::endl;
+    // May want to test FlavorText->Version
+    //std::cout << "Contest Effect Response for FlavorText->Version.name: " << std::endl << testContestEffectResponse.getFlavorText(0).getVersion() << std::endl;
+
+    std::cout << std::endl;
 
     std::cout << std::endl << "------------------------------------------------------------" << std::endl << "Berry Flavor" << std::endl;
 

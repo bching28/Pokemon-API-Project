@@ -36,8 +36,8 @@ public:
 	BerryFlavor   berryFlavor   (std::string berryFlavorName);
 
 	// Contests
-	ContestType contestType        (std::string contestTypeName);
-	std::string contestEffect      (std::string contestEffectName);
+	ContestType   contestType        (std::string contestTypeName);
+	ContestEffect contestEffect      (int contestEffectName);
 	std::string superContestEffect (std::string superContestEffectName);
 
 	// Encounters

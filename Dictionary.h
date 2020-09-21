@@ -19,6 +19,7 @@ class EncounterConditionValue;
 class Item;
 class ItemFlingEffect;
 class Language;
+class Version;
 
 class Dictionary {
 private:
@@ -29,13 +30,14 @@ private:
     std::unordered_map < std::string, BerryFirmness* > berryFirmnessDict;
     std::unordered_map < std::string, BerryFlavor* > berryFlavorDict;
     std::unordered_map < std::string, ContestType* > contestTypeDict;
-    std::unordered_map < std::string, ContestEffect* > contestEffectDict;
+    std::unordered_map < int, ContestEffect* > contestEffectDict;
     std::unordered_map < std::string, SuperContestEffect* > superContestEffectDict;
     std::unordered_map < std::string, EncounterCondition* > encounterConditionDict;
     std::unordered_map < std::string, EncounterConditionValue* > encounterConditionValueDict;
     std::unordered_map < std::string, Item* > itemDict;
     std::unordered_map < std::string, ItemFlingEffect* > itemFlingEffectDict;
     std::unordered_map < std::string, Language* > languageDict;
+    std::unordered_map < std::string, Version* > versionDict;
 
 public:
     ~Dictionary();
@@ -43,6 +45,7 @@ public:
     void terminate();
 
     bool hasFoundKey(std::string endPoint, std::string key);
+    bool hasFoundKey(std::string endPoint, int key);
 
     void setBerryDictEntry(std::string key, std::string url);
     Berry getBerryDictEntry(std::string key);
@@ -56,8 +59,8 @@ public:
     void setContestTypeDictEntry(std::string key, std::string url);
     ContestType getContestTypeDictEntry(std::string key);
 
-    void setContestEffectDictEntry(std::string key, std::string url);
-    ContestEffect getContestEffectDictEntry(std::string key);
+    void setContestEffectDictEntry(int key, std::string url);
+    ContestEffect getContestEffectDictEntry(int key);
 
     void setSuperContestEffectDictEntry(std::string key, std::string url);
     SuperContestEffect getSuperContestEffectDictEntry(std::string key);
@@ -73,6 +76,9 @@ public:
 
     void setLanguageDictEntry(std::string key, std::string url);
     Language getLanguageDictEntry(std::string key);
+
+    void setVersionDictEntry(std::string key, std::string url);
+    Version getVersionDictEntry(std::string key);
 
     void printBerryFlavorMap();
     void printContestTypeMap();

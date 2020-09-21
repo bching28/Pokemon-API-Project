@@ -28,7 +28,7 @@ Dictionary::~Dictionary() {
         delete itrCT->second;
         itrCT++;
     }
-    std::unordered_map <std::string, ContestEffect* >::iterator itrCE = contestEffectDict.begin();
+    std::unordered_map <int, ContestEffect* >::iterator itrCE = contestEffectDict.begin();
     while (itrCE != contestEffectDict.end()) {
         delete itrCE->second;
         itrCE++;
@@ -54,6 +54,7 @@ void Dictionary::terminate() {
     Dictionary::~Dictionary();
 }
 
+// Named API Resources
 bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
     if (endPoint == "berry") {
         if (berryDict.find(key) == berryDict.end()) {
@@ -72,11 +73,6 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
     }
     else if (endPoint == "contest-type") {
         if (contestTypeDict.find(key) == contestTypeDict.end()) {
-            return false;
-        }
-    }
-    else if (endPoint == "contest-effect") {
-        if (contestEffectDict.find(key) == contestEffectDict.end()) {
             return false;
         }
     }
@@ -110,7 +106,23 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
             return false;
         }
     }
+    else if (endPoint == "version") {
+        if (languageDict.find(key) == languageDict.end()) {
+            return false;
+        }
+    }
 
+    return true;
+}
+
+// API Resources
+bool Dictionary::hasFoundKey(std::string endPoint, int key) {
+    if (endPoint == "contest-effect") {
+        if (contestEffectDict.find(key) == contestEffectDict.end()) {
+            return false;
+        }
+    }
+    
     return true;
 }
 
@@ -146,11 +158,11 @@ ContestType Dictionary::getContestTypeDictEntry(std::string key) {
     return *contestTypeDict.at(key);
 }
 
-void Dictionary::setContestEffectDictEntry(std::string key, std::string url) {
+void Dictionary::setContestEffectDictEntry(int key, std::string url) {
     contestEffectDict[key] = new ContestEffect(key, url);
 }
 
-ContestEffect Dictionary::getContestEffectDictEntry(std::string key) {
+ContestEffect Dictionary::getContestEffectDictEntry(int key) {
     return *contestEffectDict.at(key);
 }
 
@@ -193,6 +205,14 @@ void Dictionary::setLanguageDictEntry(std::string key, std::string url) {
 Language Dictionary::getLanguageDictEntry(std::string key) {
     return *languageDict.at(key);
 }
+
+//void Dictionary::setVersionDictEntry(std::string key, std::string url) {
+//    versionDict[key] = new Version(key, url);
+//}
+//
+//Version Dictionary::getVersionDictEntry(std::string key) {
+//    return *versionDict.at(key);
+//}
 
 // for debugging
 void Dictionary::printBerryFlavorMap() {
