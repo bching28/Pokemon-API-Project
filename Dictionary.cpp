@@ -33,11 +33,11 @@ Dictionary::~Dictionary() {
         delete itrCE->second;
         itrCE++;
     }
-    /*std::unordered_map <std::string, SuperContestEffect* >::iterator itrCT = superContestEffectDict.begin();
-    while (itrCT != contestTypeDict.end()) {
-        delete itrCT->second;
-        itrCT++;
-    }*/
+    std::unordered_map <std::string, SuperContestEffect* >::iterator itrSCE = superContestEffectDict.begin();
+    while (itrSCE != superContestEffectDict.end()) {
+        delete itrSCE->second;
+        itrSCE++;
+    }
 
 }
 
@@ -72,6 +72,16 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
     }
     else if (endPoint == "contest-type") {
         if (contestTypeDict.find(key) == contestTypeDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "contest-effect") {
+        if (contestEffectDict.find(key) == contestEffectDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "super-contest-effect") {
+        if (superContestEffectDict.find(key) == superContestEffectDict.end()) {
             return false;
         }
     }
@@ -142,6 +152,14 @@ void Dictionary::setContestEffectDictEntry(std::string key, std::string url) {
 
 ContestEffect Dictionary::getContestEffectDictEntry(std::string key) {
     return *contestEffectDict.at(key);
+}
+
+void Dictionary::setSuperContestEffectDictEntry(std::string key, std::string url) {
+    superContestEffectDict[key] = new SuperContestEffect(key, url);
+}
+
+SuperContestEffect Dictionary::getSuperContestEffectDictEntry(std::string key) {
+    return *superContestEffectDict.at(key);
 }
 
 void Dictionary::setEncounterConditionDictEntry(std::string key, std::string url) {

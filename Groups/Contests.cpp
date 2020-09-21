@@ -11,7 +11,7 @@ ContestType::ContestType(std::string name, std::string url) {
     Requests req;
     parsedJson = req.retrieveJson("contest-type", name);
 
-    this->id = parsedJson["id"];
+    this->id   = parsedJson["id"];
     this->name = to_string(parsedJson["name"]);
 
     for (auto& contestName : parsedJson["names"]) {
@@ -54,8 +54,8 @@ ContestName ContestType::getContestName(int index) {
 
 // ContestName
 ContestName::ContestName(json contestNameJson) {
-    parsedJson = contestNameJson;
-    this->name = to_string(parsedJson["name"]);
+    parsedJson  = contestNameJson;
+    this->name  = to_string(parsedJson["name"]);
     this->color = to_string(parsedJson["color"]);
 
     dict = dict->getInstance();
