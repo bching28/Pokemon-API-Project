@@ -174,8 +174,8 @@ void Dictionary::setItemDictEntry(std::string key, std::string url) {
     itemDict[key] = new Item(key, url);
 }
 
-Item Dictionary::getItemDictEntry(std::string key) {
-    return *itemDict.at(key);
+Item* Dictionary::getItemDictEntry(std::string key) {
+    return itemDict.at(key);
 }
 
 void Dictionary::setItemFlingEffectDictEntry(std::string key, std::string url) {

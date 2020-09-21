@@ -34,9 +34,11 @@ public:
     // Destructor
     ~Requests();
 
+    std::string formatUrl(std::string endpoint, int id);
     std::string formatUrl(std::string endpoint, std::string name);
     std::string retrieveHTTPResponse(std::string url);
-    json retrieveJson(std::string endpointType, std::string endpointValue);
+    json retrieveJson(std::string endpointType, int endpointId);
+    json retrieveJson(std::string endpointType, std::string endpointName);
     int createConnection(std::string url);
     std::string getResponse() const;
 };

@@ -9,15 +9,16 @@
 #define POKEWRAP_H
 
 #include <iostream>
-#include "Requests.h"
 #include "Groups/Contests.h"
 #include "Groups/Berries.h"
+#include "Requests.h"
 
 class PokeWrap {
 private:
+	Requests req;
+
 	std::string baseUrl;
 
-	std::string formatUrl(std::string endpoint, std::string name);
 	std::string retrieveHTTPResponse(std::string url);
 
 public:
@@ -45,7 +46,7 @@ public:
 	EncounterConditionValue encounterConditionValue (std::string encounterConditionValueName);
 
 	// Evolution
-	std::string evolutionChain   (std::string evolutionChainName);
+	EvolutionChain evolutionChain   (int evolutionChainId);
 	std::string evolutionTrigger (std::string evolutionTriggerName);
 
 	// Games

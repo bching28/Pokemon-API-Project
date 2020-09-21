@@ -23,15 +23,22 @@ class Name;           // Utility.h
 //class PokemonSpecies; // Pokemon.h
 
 // TODO::Need to inherit APIResource
-class EvolutionChain {
+class EvolutionChain : public APIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
-    Item* babyTriggerItem;
+    //Item* babyTriggerItem;
     ChainLink* chain;
 
 public:
-    EvolutionChain();
+    EvolutionChain(int id, std::string url);
     ~EvolutionChain();
+
+    int getId();
+    Item* getBabyTriggerItem();
+    ChainLink getChain();
 };
 
 class ChainLink {
