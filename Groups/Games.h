@@ -39,7 +39,7 @@ private:
     //Move* moves; // Moves.h
     //PokemonSpecies* pokemonSpecies; // Pokemon.h
     //Type* types; // Pokemon.h
-    VersionGroup* verionGroups;
+    std::vector<VersionGroup*> versionGroups;
 
 public:
     Generation(std::string name, std::string url);
@@ -49,6 +49,7 @@ public:
     int getId();
     std::string getName();
     Name getNames(int index);
+    VersionGroup* getVersionGroups(int index);
 };
 
 class Pokedex : public NamedAPIResource {
@@ -63,7 +64,7 @@ private:
     std::vector<Name*> names;
     PokemonEntry* pokemonEntries;
     //Region* region;  // Locations.h
-    VersionGroup* versionGroups;
+    std::vector<VersionGroup*> versionGroups;
 
 public:
     Pokedex(std::string name, std::string url);
@@ -75,16 +76,22 @@ public:
     bool isMainSeries();
 
     Name getNames(int index);
+    VersionGroup* getVersionGroups(int index);
 };
 
 class PokemonEntry {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int entryNumber;
    // PokemonSpecies* pokemoneSpecies; // Pokemon
 
 public:
-    PokemonEntry();
+    PokemonEntry(json pokemonEntryJson);
     ~PokemonEntry();
+
+    int getEntryNumber();
 };
 
 class Version : public NamedAPIResource {
@@ -105,6 +112,7 @@ public:
     int getId();
     std::string getName();
     Name getNames(int index);
+    VersionGroup* getVersionGroup();
 };
 
 class VersionGroup : public NamedAPIResource {
@@ -117,9 +125,9 @@ private:
     int order;
     Generation* generation;
     //MoveLearnMethod* moveLearnMethods; // Moves.h
-    Pokedex* pokedexes;
-    Region* regions;
-    Version* verions;
+    std::vector<Pokedex*> pokedexes;
+    //Region* regions;
+    std::vector<Version*> versions;
 
 public:
     VersionGroup(std::string name, std::string url);
@@ -129,6 +137,9 @@ public:
     int getId();
     std::string getName();
     int getOrder();
+    Generation* getGeneration();
+    Pokedex* getPokedexes(int index);
+    Version* getVersions(int index);
 };
 
 #endif // GAMES_H

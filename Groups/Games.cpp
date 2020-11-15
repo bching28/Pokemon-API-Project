@@ -41,9 +41,13 @@ Name Generation::getNames(int index) {
     return *(this->names.at(index));
 }
 
+VersionGroup* Generation::getVersionGroups(int index) {
+    return this->versionGroups.at(index);
+}
 
 
-// Generation (endpoint)
+
+// Pokedex (endpoint)
 // -------------------------------------------------------------------------
 // Constructor
 Pokedex::Pokedex(std::string name, std::string url) {
@@ -88,6 +92,28 @@ Name Pokedex::getNames(int index) {
     return *(this->names.at(index));
 }
 
+VersionGroup* Pokedex::getVersionGroups(int index) {
+    return this->versionGroups.at(index);
+}
+
+// Pokemon Entry
+// -------------------------------------------------------------------------
+// Constructor
+PokemonEntry::PokemonEntry(json pokemonEntryJson) {
+    this->parsedJson = pokemonEntryJson;
+    this->dict = this->dict->getInstance();
+
+    this->entryNumber = checkForNull(this->parsedJson, "entry_number");
+}
+
+PokemonEntry::~PokemonEntry() {
+
+}
+
+int PokemonEntry::getEntryNumber() {
+    return this->entryNumber;
+}
+
 
 // Version (endpoint)
 // -------------------------------------------------------------------------
@@ -129,6 +155,28 @@ Name Version::getNames(int index) {
     return *(this->names.at(index));
 }
 
+VersionGroup* Version::getVersionGroup() {
+    std::string name;
+    std::string url;
+
+    // determine if field is NULL
+    if (this->parsedJson["version_group"].is_null()) {
+        return NULL;
+    }
+    else {
+        name = to_string(parsedJson["version_group"]["name"]);
+        url = to_string(parsedJson["version_group"]["url"]);
+    }
+
+    //if not found in dict
+    if (this->dict->hasFoundKey("version-group", name) == false) {
+        // add to dictionary
+        this->dict->setVersionGroupDictEntry(name, url);
+    }
+
+    return this->dict->getVersionGroupDictEntry(name);
+}
+
 
 // Version Group (endpoint)
 // -------------------------------------------------------------------------
@@ -165,4 +213,34 @@ std::string VersionGroup::getName() {
 
 int VersionGroup::getOrder() {
     return this->order;
+}
+
+Generation* VersionGroup::getGeneration() {
+    std::string name;
+    std::string url;
+
+    // determine if field is NULL
+    if (this->parsedJson["generation"].is_null()) {
+        return NULL;
+    }
+    else {
+        name = to_string(parsedJson["generation"]["name"]);
+        url = to_string(parsedJson["generation"]["url"]);
+    }
+
+    //if not found in dict
+    if (this->dict->hasFoundKey("generation", name) == false) {
+        // add to dictionary
+        this->dict->setGenerationDictEntry(name, url);
+    }
+
+    return this->dict->getGenerationDictEntry(name);
+}
+
+Pokedex* VersionGroup::getPokedexes(int index) {
+    return this->pokedexes.at(index);
+}
+
+Version* VersionGroup::getVersions(int index) {
+    return this->versions.at(index);
 }
