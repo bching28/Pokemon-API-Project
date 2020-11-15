@@ -50,10 +50,10 @@ public:
 	EvolutionTrigger evolutionTrigger (std::string evolutionTriggerName);
 
 	// Games
-	std::string generation   (std::string generationName);
-	std::string pokedex      (std::string pokedexName);
-	std::string version      (std::string versionName);
-	std::string versionGroup (std::string versionGroupName);
+	Generation generation   (std::string generationName);
+	Pokedex pokedex      (std::string pokedexName);
+	Version version      (std::string versionName);
+	VersionGroup versionGroup (std::string versionGroupName);
 
 	// Items
 	Item            item            (std::string itemName);

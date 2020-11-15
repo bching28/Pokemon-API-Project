@@ -122,28 +122,36 @@ EvolutionTrigger PokeWrap::evolutionTrigger(std::string evolutionTriggerName) {
 
 // Games
 
-std::string PokeWrap::generation(std::string generationName) {
+Generation PokeWrap::generation(std::string generationName) {
 	std::string formattedUrl = req.formatUrl("generation", generationName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	Generation generation(generationName, formattedUrl);
+
+	return generation;
 }
 
-std::string PokeWrap::pokedex(std::string pokedexName) {
+Pokedex PokeWrap::pokedex(std::string pokedexName) {
 	std::string formattedUrl = req.formatUrl("pokedex", pokedexName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	Pokedex pokedex(pokedexName, formattedUrl);
+
+	return pokedex;
 }
 
-std::string PokeWrap::version(std::string versionName) {
+Version PokeWrap::version(std::string versionName) {
 	std::string formattedUrl = req.formatUrl("version", versionName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	Version version(versionName, formattedUrl);
+
+	return version;
 }
 
-std::string PokeWrap::versionGroup(std::string versionGroupName) {
+VersionGroup PokeWrap::versionGroup(std::string versionGroupName) {
 	std::string formattedUrl = req.formatUrl("version-group", versionGroupName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	VersionGroup versionGroup(versionGroupName, formattedUrl);
+
+	return versionGroup;
 }
 
 // Items
