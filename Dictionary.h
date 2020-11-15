@@ -18,10 +18,13 @@ class EncounterCondition;
 class EncounterConditionValue;
 class EvolutionChain;
 class EvolutionTrigger;
+class Generation;
+class Pokedex;
+class Version;
+class VersionGroup;
 class Item;
 class ItemFlingEffect;
 class Language;
-class Version;
 
 class Dictionary {
 private:
@@ -38,10 +41,14 @@ private:
     std::unordered_map < std::string, EncounterConditionValue* > encounterConditionValueDict;
     std::unordered_map < int, EvolutionChain* > evolutionChainDict;
     std::unordered_map < std::string, EvolutionTrigger* > evolutionTriggerDict;
+    std::unordered_map < std::string, Generation* > generationDict;
+    std::unordered_map < std::string, Pokedex* > pokedexDict;
+    std::unordered_map < std::string, Version* > versionDict;
+    std::unordered_map < std::string, VersionGroup* > versionGroupDict;
     std::unordered_map < std::string, Item* > itemDict;
     std::unordered_map < std::string, ItemFlingEffect* > itemFlingEffectDict;
     std::unordered_map < std::string, Language* > languageDict;
-    std::unordered_map < std::string, Version* > versionDict;
+    
 
 public:
     ~Dictionary();
@@ -78,6 +85,24 @@ public:
     void setEvolutionTriggerDictEntry(std::string key, std::string url);
     EvolutionTrigger* getEvolutionTriggerDictEntry(std::string key);
 
+    // Games (group)
+    // ---------------------------------------------------------------------
+
+    void setGenerationDictEntry(std::string key, std::string url);
+    Generation* getGenerationDictEntry(std::string key);
+
+    void setPokedexDictEntry(std::string key, std::string url);
+    Pokedex* getPokedexDictEntry(std::string key);
+
+    void setVersionDictEntry(std::string key, std::string url);
+    Version* getVersionDictEntry(std::string key);
+
+    void setVersionGroupDictEntry(std::string key, std::string url);
+    VersionGroup* getVersionGroupDictEntry(std::string key);
+
+    // Items (group)
+    // ---------------------------------------------------------------------
+
     void setItemDictEntry(std::string key, std::string url);
     Item* getItemDictEntry(std::string key);
 
@@ -86,9 +111,6 @@ public:
 
     void setLanguageDictEntry(std::string key, std::string url);
     Language getLanguageDictEntry(std::string key);
-
-    void setVersionDictEntry(std::string key, std::string url);
-    Version getVersionDictEntry(std::string key);
 
     void printBerryFlavorMap();
     void printContestTypeMap();

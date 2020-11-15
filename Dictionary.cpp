@@ -91,6 +91,16 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
             return false;
         }
     }
+    else if (endPoint == "evolution-trigger") {
+        if (evolutionTriggerDict.find(key) == evolutionTriggerDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "generation") {
+        if (generationDict.find(key) == generationDict.end()) {
+            return false;
+        }
+    }
     else if (endPoint == "item") {
         if (itemDict.find(key) == itemDict.end()) {
             return false;
@@ -119,6 +129,11 @@ bool Dictionary::hasFoundKey(std::string endPoint, std::string key) {
 bool Dictionary::hasFoundKey(std::string endPoint, int key) {
     if (endPoint == "contest-effect") {
         if (contestEffectDict.find(key) == contestEffectDict.end()) {
+            return false;
+        }
+    }
+    else if (endPoint == "evolution-chain") {
+        if (evolutionChainDict.find(key) == evolutionChainDict.end()) {
             return false;
         }
     }
@@ -198,6 +213,44 @@ EvolutionTrigger* Dictionary::getEvolutionTriggerDictEntry(std::string key) {
     return evolutionTriggerDict.at(key);
 }
 
+// Games (group)
+// ------------------------------------------------------------------------------
+
+void Dictionary::setGenerationDictEntry(std::string key, std::string url) {
+    generationDict[key] = new Generation(key, url);
+}
+
+Generation* Dictionary::getGenerationDictEntry(std::string key) {
+    return generationDict.at(key);
+}
+
+void Dictionary::setPokedexDictEntry(std::string key, std::string url) {
+    pokedexDict[key] = new Pokedex(key, url);
+}
+
+Pokedex* Dictionary::getPokedexDictEntry(std::string key) {
+    return pokedexDict.at(key);
+}
+
+void Dictionary::setVersionDictEntry(std::string key, std::string url) {
+    versionDict[key] = new Version(key, url);
+}
+
+Version* Dictionary::getVersionDictEntry(std::string key) {
+    return versionDict.at(key);
+}
+
+void Dictionary::setVersionGroupDictEntry(std::string key, std::string url) {
+    versionGroupDict[key] = new VersionGroup(key, url);
+}
+
+VersionGroup* Dictionary::getVersionGroupDictEntry(std::string key) {
+    return versionGroupDict.at(key);
+}
+
+// Items (group)
+// ------------------------------------------------------------------------------
+
 void Dictionary::setItemDictEntry(std::string key, std::string url) {
     itemDict[key] = new Item(key, url);
 }
@@ -221,14 +274,6 @@ void Dictionary::setLanguageDictEntry(std::string key, std::string url) {
 Language Dictionary::getLanguageDictEntry(std::string key) {
     return *languageDict.at(key);
 }
-
-//void Dictionary::setVersionDictEntry(std::string key, std::string url) {
-//    versionDict[key] = new Version(key, url);
-//}
-//
-//Version Dictionary::getVersionDictEntry(std::string key) {
-//    return *versionDict.at(key);
-//}
 
 // for debugging
 void Dictionary::printBerryFlavorMap() {
