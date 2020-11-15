@@ -41,6 +41,8 @@ int main() {
     BerryFlavor testBerryFlavorResponse = pw.berryFlavor("spicy");
     BerryFirmness testBerryFirmnessResponse = pw.berryFirmness("very-soft");
     EncounterCondition testEncounterConditionResponse = pw.encounterCondition("swarm");
+    EvolutionChain testEvolutionChainResponse = pw.evolutionChain(67); // 67 for eevee
+    //EvolutionTrigger testEvolutionTriggerResponse = pw.evolutionTrigger();
 
     json j = json::parse(testPokemonResponse);
 
@@ -114,6 +116,24 @@ int main() {
     std::cout << "EncounterCondition Values[1] Condition Name:" << std::endl << testEncounterConditionResponse.getValues(1).getCondition().getName() << std::endl;
 
     std::cout << "Get Fling Effect Name: " << std::endl << testItemResponse.getFlintEffect() << std::endl;
+
+    std::cout << std::endl << "------------------------------------------------------------" << std::endl << "Evolution Chain" << std::endl;
+
+    std::cout << "EvolutionChain ID:" << std::endl << testEvolutionChainResponse.getId() << std::endl;
+    std::cout << "EvolutionChain BabyTriggerItem:" << std::endl;
+    if (testEvolutionChainResponse.getBabyTriggerItem() == NULL) {
+        std::cout << "NULL" << std::endl;
+    }
+    else {
+        std::cout << testEvolutionChainResponse.getBabyTriggerItem() << std::endl;
+    }
+    std::cout << "EvolutionChain Chain:" << std::endl;
+    if (testEvolutionChainResponse.getChain()->getEvolutionDetails(0) == NULL) {
+        std::cout << "NULL" << std::endl;
+    }
+    else {
+        std::cout << testEvolutionChainResponse.getChain()->getEvolutionDetails(0) << std::endl;
+    }
 
     std::cout << "Done" << std::endl;
 

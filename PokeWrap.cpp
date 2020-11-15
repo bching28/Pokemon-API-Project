@@ -112,10 +112,12 @@ EvolutionChain PokeWrap::evolutionChain(int evolutionChainId) {
 	return evolutionChain;
 }
 
-std::string PokeWrap::evolutionTrigger(std::string evolutionTriggerName) {
+EvolutionTrigger PokeWrap::evolutionTrigger(std::string evolutionTriggerName) {
 	std::string formattedUrl = req.formatUrl("evolution-trigger", evolutionTriggerName);
 
-	return retrieveHTTPResponse(formattedUrl);
+	EvolutionTrigger evolutionTrigger(evolutionTriggerName, formattedUrl);
+
+	return evolutionTrigger;
 }
 
 // Games

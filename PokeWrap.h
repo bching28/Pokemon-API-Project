@@ -47,7 +47,7 @@ public:
 
 	// Evolution
 	EvolutionChain evolutionChain   (int evolutionChainId);
-	std::string evolutionTrigger (std::string evolutionTriggerName);
+	EvolutionTrigger evolutionTrigger (std::string evolutionTriggerName);
 
 	// Games
 	std::string generation   (std::string generationName);

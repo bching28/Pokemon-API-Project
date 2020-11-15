@@ -182,6 +182,22 @@ EncounterCondition Dictionary::getEncounterConditionDictEntry(std::string key) {
     return *encounterConditionDict.at(key);
 }
 
+void Dictionary::setEvolutionChainDictEntry(int key, std::string url) {
+    evolutionChainDict[key] = new EvolutionChain(key, url);
+}
+
+EvolutionChain* Dictionary::getEvolutionChainDictEntry(int key) {
+    return evolutionChainDict.at(key);
+}
+
+void Dictionary::setEvolutionTriggerDictEntry(std::string key, std::string url) {
+    evolutionTriggerDict[key] = new EvolutionTrigger(key, url);
+}
+
+EvolutionTrigger* Dictionary::getEvolutionTriggerDictEntry(std::string key) {
+    return evolutionTriggerDict.at(key);
+}
+
 void Dictionary::setItemDictEntry(std::string key, std::string url) {
     itemDict[key] = new Item(key, url);
 }

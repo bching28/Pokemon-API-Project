@@ -16,6 +16,8 @@ class ContestEffect;
 class SuperContestEffect;
 class EncounterCondition;
 class EncounterConditionValue;
+class EvolutionChain;
+class EvolutionTrigger;
 class Item;
 class ItemFlingEffect;
 class Language;
@@ -34,6 +36,8 @@ private:
     std::unordered_map < std::string, SuperContestEffect* > superContestEffectDict;
     std::unordered_map < std::string, EncounterCondition* > encounterConditionDict;
     std::unordered_map < std::string, EncounterConditionValue* > encounterConditionValueDict;
+    std::unordered_map < int, EvolutionChain* > evolutionChainDict;
+    std::unordered_map < std::string, EvolutionTrigger* > evolutionTriggerDict;
     std::unordered_map < std::string, Item* > itemDict;
     std::unordered_map < std::string, ItemFlingEffect* > itemFlingEffectDict;
     std::unordered_map < std::string, Language* > languageDict;
@@ -67,6 +71,12 @@ public:
 
     void setEncounterConditionDictEntry(std::string key, std::string url);
     EncounterCondition getEncounterConditionDictEntry(std::string key);
+
+    void setEvolutionChainDictEntry(int key, std::string url);
+    EvolutionChain* getEvolutionChainDictEntry(int key);
+
+    void setEvolutionTriggerDictEntry(std::string key, std::string url);
+    EvolutionTrigger* getEvolutionTriggerDictEntry(std::string key);
 
     void setItemDictEntry(std::string key, std::string url);
     Item* getItemDictEntry(std::string key);
