@@ -26,36 +26,55 @@ class Name;           // Utility.h
 class Region;         // Locations.h
 //class Type;           // Pokemon.h
 
-class Generation {
+class Generation : public NamedAPIResource {
+private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     //Ability* abilities; // Pokemon.h
-    Name* names;
-    Region* mainRegion; // Locations.h
+    std::vector<Name*> names;
+    //Region* mainRegion; // Locations.h
     //Move* moves; // Moves.h
     //PokemonSpecies* pokemonSpecies; // Pokemon.h
     //Type* types; // Pokemon.h
     VersionGroup* verionGroups;
 
 public:
-    Generation();
+    Generation(std::string name, std::string url);
+    //Generation(const Generation& obj) // copy constructor
     ~Generation();
+
+    int getId();
+    std::string getName();
+    Name getNames(int index);
 };
 
-class Pokedex {
+class Pokedex : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
-    bool isMainSeries;
+    bool mainSeries;
     //Description descriptions; // Utility.h
-    Name* names;
+    std::vector<Name*> names;
     PokemonEntry* pokemonEntries;
     //Region* region;  // Locations.h
     VersionGroup* versionGroups;
 
 public:
-    Pokedex();
+    Pokedex(std::string name, std::string url);
+    //Pokedex(const Generation& obj) // copy constructor
     ~Pokedex();
+
+    int getId();
+    std::string getName();
+    bool isMainSeries();
+
+    Name getNames(int index);
 };
 
 class PokemonEntry {
@@ -68,20 +87,31 @@ public:
     ~PokemonEntry();
 };
 
-class Version {
+class Version : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
-    Name* names;
+    std::vector<Name*> names;
     VersionGroup* versionGroup;
 
 public:
-    Version();
+    Version(std::string name, std::string url);
+    //Version(const Generation& obj) // copy constructor
     ~Version();
+
+    int getId();
+    std::string getName();
+    Name getNames(int index);
 };
 
-class VersionGroup {
+class VersionGroup : public NamedAPIResource {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
     int order;
@@ -92,8 +122,13 @@ private:
     Version* verions;
 
 public:
-    VersionGroup();
+    VersionGroup(std::string name, std::string url);
+    //VersionGroup(const Generation& obj) // copy constructor
     ~VersionGroup();
+
+    int getId();
+    std::string getName();
+    int getOrder();
 };
 
 #endif // GAMES_H

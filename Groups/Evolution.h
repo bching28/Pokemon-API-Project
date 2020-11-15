@@ -34,29 +34,41 @@ private:
 
 public:
     EvolutionChain(int id, std::string url);
+    EvolutionChain(const EvolutionChain& obj);
     ~EvolutionChain();
 
     int getId();
     Item* getBabyTriggerItem();
-    ChainLink getChain();
+    ChainLink* getChain();
 };
 
 class ChainLink {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     bool isBaby;
     //PokemonSpecies species; // Pokemon.h
-    EvolutionDetail* evolutionDetails;
-    ChainLink* evolvesTo;
+    std::vector<EvolutionDetail*> evolutionDetails;
+    std::vector<ChainLink*> evolvesTo;
 
 public:
-    ChainLink();
+    ChainLink(json chainLinkJson);
+    ChainLink(const ChainLink& obj);
     ~ChainLink();
+
+    bool getIsBaby();
+    EvolutionDetail* getEvolutionDetails(int index);
+    ChainLink* getEvolvesTo(int index);
 };
 
 class EvolutionDetail {
 private:
+    json parsedJson;
+    Dictionary* dict;
+
     Item* item;
-    EvolutionTrigger* trigger;
+    //EvolutionTrigger* trigger;
     int gender;
     Item* heldItem;
     //Move knownMove; // Moves.h
@@ -75,19 +87,48 @@ private:
     bool turnUpsideDown;
 
 public:
-    EvolutionDetail();
+    EvolutionDetail(json evolutionDetailJson);
     ~EvolutionDetail();
+
+    Item* getItem();
+    EvolutionTrigger* getTrigger();
+    int getGender();
+    Item* getHeldItem();
+    //Move* getKnownMove();
+    //Type* getKnownMoveType();
+    //Location* getLocation();
+    int getMinLevel();
+    int getMinHappiness();
+    int getMinBeauty();
+    int getMinAffection();
+    bool getNeedsOverworldRain();
+    //PokemonSpecies* getPartySpecies();
+    //Type* getPartyType();
+    int getRelativePhysicalStats();
+    std::string getTimeOfDay();
+    //PokemonSpecies* getTradeSpecies();
+    bool getTurnUpsideDown();
+
 };
 
 class EvolutionTrigger : public NamedAPIResource {
+private:
+    json parsedJson;
+    Dictionary* dict;
+
     int id;
     std::string name;
-    Name* names;
+    std::vector<Name*> names;
     //PokemonSpecies pokemonSpecies; // Pokemon.h
 
 public:
-    EvolutionTrigger();
+    EvolutionTrigger(std::string name, std::string url);
     ~EvolutionTrigger();
+
+    int getId();
+    std::string getName();
+    Name getNames(int index);
+    //PokemonSpecies* getPokemonSpecies();
 };
 
 #endif // EVOLUTION_H

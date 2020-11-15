@@ -100,9 +100,8 @@ Item* Berry::getItem() {
 // Constructor
 BerryFlavorMap::BerryFlavorMap(json berryFlavorMapJson) {
     parsedJson = berryFlavorMapJson;
-    potency = parsedJson["potency"];
-
     dict = dict->getInstance();
+    potency = parsedJson["potency"];
 }
 
 BerryFlavorMap::~BerryFlavorMap() {
