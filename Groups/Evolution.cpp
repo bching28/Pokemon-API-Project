@@ -147,7 +147,7 @@ EvolutionDetail::EvolutionDetail(json evolutionDetailJson) {
     this->minAffection = checkForNull(this->parsedJson, "min_affection");
     this->needsOverworldRain = this->parsedJson["needs_overworld_rain"];
     this->relativePhysicalStats = checkForNull(this->parsedJson, "relative_physical_stats");
-    this->timeOfDay = this->parsedJson["time_of_day"];
+    this->timeOfDay = to_string(this->parsedJson["time_of_day"]);
     this->turnUpsideDown = this->parsedJson["turn_upside_down"];
 }
 
@@ -283,7 +283,7 @@ EvolutionTrigger::EvolutionTrigger(std::string name, std::string url) {
     this->dict = this->dict->getInstance();
 
     this->id = this->parsedJson["id"];
-    this->name = this->parsedJson["name"];
+    this->name = to_string(this->parsedJson["name"]);
 
     for (auto& name : parsedJson["names"]) {
         this->names.push_back(new Name(name));

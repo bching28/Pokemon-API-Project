@@ -14,7 +14,7 @@ Generation::Generation(std::string name, std::string url) {
     this->dict = this->dict->getInstance();
 
     this->id = this->parsedJson["id"];
-    this->name = this->parsedJson["name"];
+    this->name = to_string(this->parsedJson["name"]);
 
     for (auto& name : parsedJson["names"]) {
         this->names.push_back(new Name(name));
@@ -60,7 +60,7 @@ Pokedex::Pokedex(std::string name, std::string url) {
     this->dict = this->dict->getInstance();
 
     this->id = this->parsedJson["id"];
-    this->name = this->parsedJson["name"];
+    this->name = to_string(this->parsedJson["name"]);
     this->mainSeries = this->parsedJson["is_main_series"];
 
     for (auto& name : parsedJson["names"]) {
@@ -128,7 +128,7 @@ Version::Version(std::string name, std::string url) {
     this->dict = this->dict->getInstance();
 
     this->id = this->parsedJson["id"];
-    this->name = this->parsedJson["name"];
+    this->name = to_string(this->parsedJson["name"]);
 
     for (auto& name : parsedJson["names"]) {
         this->names.push_back(new Name(name));
@@ -191,7 +191,7 @@ VersionGroup::VersionGroup(std::string name, std::string url) {
     this->dict = this->dict->getInstance();
 
     this->id = this->parsedJson["id"];
-    this->name = this->parsedJson["name"];
+    this->name = to_string(this->parsedJson["name"]);
     this->order = this->parsedJson["order"];
 }
 
